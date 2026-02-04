@@ -149,9 +149,9 @@ const Asidebar = () => {
                     className="fixed inset-0 bg-black/40 z-40"
                 />
             )}
-            <div className={`w-64  border border-gray-100
-        ${openMenuAsideBar ? "translate-x-0 z-50 duration-500" : "-translate-x-80 duration-500"}
-        h-screen hover:overflow-auto pb-24 duration-500 bg-white fixed top-20 left-0 border-r border-gray-100`}>
+            <div className={`w-full sm:w-64  border border-gray-100
+        ${openMenuAsideBar ? "translate-x-0 z-50 duration-500" : "-translate-x-full duration-500"}
+        h-screen hover:overflow-auto pb-24 duration-500 bg-white fixed top-18 sm:top-20 left-0 border-r border-gray-100`}>
                 <div className='border-b border-gray-200 flex px-2 py-4 flex-col gap-2 items-start w-full'>
                     {navData.map((items) => {
                         const isActive = location.pathname === items.url;

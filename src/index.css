@@ -3,6 +3,7 @@
 
 .no_scrollBar::-webkit-scrollbar{
   width: 0px;
+  visibility: hidden;
 }
 
 @keyframes scrollUp {
@@ -24,11 +25,11 @@
 }
 
 .scroll-up {
-  animation: scrollUp 15s linear infinite;
+  animation: scrollUp 15s linear infinite alternate-reverse;
 }
 
 .scroll-down {
-  animation: scrollDown 15s linear infinite;
+  animation: scrollDown 15s linear infinite alternate-reverse;
 }
 
 .scroll-up:hover,

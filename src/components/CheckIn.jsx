@@ -33,7 +33,6 @@ const CheckIn = () => {
         city.toLowerCase().includes(data.destination.toLowerCase())
     );
 
-    // 🔹 Update children count + ages
     const updateChildren = (count) => {
         setData({
             ...data,
@@ -45,12 +44,12 @@ const CheckIn = () => {
     return (
         <div className="py-4 flex flex-col gap-4 px-4 w-full bg-white shadow-sm rounded-sm">
             <div className="grid grid-cols-12 gap-3 items-end">
-                <div className="col-span-4 relative">
+                <div className="col-span-12 lg:col-span-4">
                     <p className="text-xs text-gray-500">{bookingFields.destination.label}</p>
                     <input
                         type="text"
                         placeholder={bookingFields.destination.placeholder}
-                        className="w-full mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm outline-none"
+                        className="w-full hover:bg-gray-100 mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm outline-none"
                         value={data.destination}
                         onChange={(e) => {
                             setData({ ...data, destination: e.target.value });
@@ -59,7 +58,7 @@ const CheckIn = () => {
                     />
 
                     {showCities && data.destination && (
-                        <div className="absolute z-10 bg-white border border-gray-100 w-full mt-1 rounded-sm shadow-lg">
+                        <div className="bg-white border border-gray-100 w-full mt-1 rounded-sm shadow-lg">
                             {filteredCities.map((city, i) => (
                                 <div
                                     key={i}
@@ -75,38 +74,36 @@ const CheckIn = () => {
                         </div>
                     )}
                 </div>
-                <div className="col-span-2">
+                <div className=" lg:col-span-2 col-span-6">
                     <p className="text-xs text-gray-500">{bookingFields.checkIn.label}</p>
                     <input
                         type="date"
-                        className="w-full mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm"
+                        className="w-full mt-1 outline-0 border border-gray-200 rounded-sm px-2 py-2 text-sm"
                         value={data.checkIn}
                         onChange={(e) => setData({ ...data, checkIn: e.target.value })}
                     />
                 </div>
-                <div className="col-span-2">
+                <div className="lg:col-span-2 col-span-6">
                     <p className="text-xs text-gray-500">{bookingFields.checkOut.label}</p>
                     <input
                         type="date"
-                        className="w-full mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm"
+                        className="w-full mt-1 border border-gray-200 outline-0 rounded-sm px-2 py-2 text-sm"
                         value={data.checkOut}
                         onChange={(e) => setData({ ...data, checkOut: e.target.value })}
                     />
                 </div>
-                <div className="col-span-3 relative">
+                <div className="lg:col-span-2 col-span-12 relative">
                     <p className="text-xs text-gray-500">{bookingFields.guests.label}</p>
                     <div
-                        className="border border-gray-200 whitespace-nowrap rounded-sm px-2 py-2 text-sm mt-1 cursor-pointer"
+                        className="border hover:bg-gray-100 border-gray-200 whitespace-nowrap rounded-sm px-2 py-2 text-sm mt-1 cursor-pointer"
                         onClick={() => setShowGuests(!showGuests)}
                     >
                         {data.adults} adults, {data.rooms} rooms
                     </div>
 
-                    {/* Guests Dropdown */}
                     {showGuests && (
-                        <div className="absolute z-50 bg-white border border-gray-100 rounded-md shadow-xl p-4 mt-2 w-72">
+                        <div className="absolute z-10 bg-white border border-gray-100 rounded-md shadow-xl p-4 mt-2 w-72">
 
-                            {/* Rooms */}
                             <GuestCounter
                                 label="Rooms"
                                 value={data.rooms}
@@ -114,7 +111,6 @@ const CheckIn = () => {
                                 min={1}
                             />
 
-                            {/* Adults */}
                             <GuestCounter
                                 label="Adults"
                                 value={data.adults}
@@ -122,7 +118,6 @@ const CheckIn = () => {
                                 min={1}
                             />
 
-                            {/* Children */}
                             <GuestCounter
                                 label="Children"
                                 value={data.children}
@@ -130,7 +125,6 @@ const CheckIn = () => {
                                 min={0}
                             />
 
-                            {/* Children Ages */}
                             {data.children > 0 && (
                                 <div className="mt-3">
                                     <p className="text-xs text-gray-500 mb-2">Age of child</p>
@@ -158,8 +152,8 @@ const CheckIn = () => {
                     )}
                 </div>
 
-                <div className="col-span-1">
-                    <button className="w-full py-3 bg-orange-600 text-white rounded-lg text-sm">
+                <div className="lg:col-span-2 col-span-12">
+                    <button className="w-full py-2 bg-orange-600 text-white rounded-lg text-sm">
                         Search
                     </button>
                 </div>
