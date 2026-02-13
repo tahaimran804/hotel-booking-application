@@ -6,6 +6,12 @@ import { LuShip } from "react-icons/lu";
 import Container from './Container'
 import { Link, useLocation } from "react-router-dom";
 import CheckIn from "./CheckIn";
+import HeroImage1 from "../assets/hero-image-1.png"
+import HeroImage2 from "../assets/hero-image-2.png"
+import HeroImage3 from "../assets/hero-image-3.png"
+import HeroImage4 from "../assets/hero-image-4.png"
+import HeroImage5 from "../assets/hero-image-5.png"
+import HeroImage6 from "../assets/hero-image-6.png"
 
 const HeroSection = () => {
     const location = useLocation()
@@ -14,7 +20,7 @@ const HeroSection = () => {
             id: 1,
             name: "Flights",
             icon: <GiCommercialAirplane />,
-            url: "",
+            url: "#",
         },
         {
             id: 2,
@@ -44,9 +50,9 @@ const HeroSection = () => {
     return (
         <section className="mx-4 rounded-2xl bg-[#f0f3f5]">
             <Container>
-                <div className="w-full h-auto no_scrollBar overflow-scroll lg:h-110">
-                    <div className="grid grid-cols-10 gap-4 h-full w-full">
-                        <div className="col-span-10 xl:col-span-7 w-full flex flex-col gap-0 items-center justify-center xl:justify-start xl:items-start py-10 px-0 md:px-5 rounded-xl">
+                <div className="w-full h-full  lg:h-110">
+                    <div className="grid grid-cols-10 gap-4 w-full h-full">
+                        <div className="col-span-10 xl:col-span-7 w-full h-full flex flex-col gap-0 items-center justify-center xl:justify-start xl:items-start py-10 px-0 md:px-5 rounded-xl">
                             <h1 className='text-4xl font-bold hidden md:flex items-end gap-1 text-black'
                                 style={{
                                     fontFamily: "'Roboto', sans-serif"
@@ -64,7 +70,7 @@ const HeroSection = () => {
                                     )
                                 })}
                             </div>
-                            <div className="mt-5 flex flex-col gap-4 items-start w-full pr-0 h-28 xl:pr-4">
+                            <div className="mt-5 flex flex-col gap-4 items-start w-full h-full pr-0 xl:h-28 xl:pr-4">
                                 <CheckIn />
                                 <div className="flex items-start flex-wrap gap-4">
                                     <p className="text-sm font-normal">Compare vs. KAYAK</p>
@@ -77,14 +83,14 @@ const HeroSection = () => {
 
                         </div>
 
-                        <div className="col-span-3 hidden xl:flex gap-4 overflow-hidden h-full">
+                        <div className="col-span-3 hidden xl:flex gap-4 overflow-hidden">
                             <div className="flex flex-col gap-4 scroll-up">
                                 {[1, 2].map((_, i) => (
                                     <>
                                         {[
-                                            "/hero-image-1.png",
-                                            "/hero-image-2.png",
-                                            "/hero-image-3.png",
+                                            HeroImage1,
+                                            HeroImage2,
+                                            HeroImage3,
                                         ].map((img, index) => (
                                             <div key={`${i}-${index}`} className="w-40 xl:w-44 h-40 xl:h-44">
                                                 <img
@@ -102,9 +108,9 @@ const HeroSection = () => {
                                 {[1, 2].map((_, i) => (
                                     <>
                                         {[
-                                            "/hero-image-4.png",
-                                            "/hero-image-5.png",
-                                            "/hero-image-6.png",
+                                            HeroImage4,
+                                            HeroImage5,
+                                            HeroImage6,
                                         ].map((img, index) => (
                                             <div key={`${i}-${index}`} className="w-40 xl:w-44 h-40 xl:h-44">
                                                 <img
@@ -120,7 +126,7 @@ const HeroSection = () => {
                         </div>
                     </div>
                 </div>
-            </Container >
+            </Container>
         </section>
     )
 }

@@ -6,6 +6,10 @@
   visibility: hidden;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 @keyframes scrollUp {
   0% {
     transform: translateY(0);
@@ -35,4 +39,19 @@
 .scroll-up:hover,
 .scroll-down:hover {
   animation-play-state: paused;
+}
+
+.price-marker {
+    background: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: black;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    border: 1px solid #ddd;
+}
+
+.all_Filter{
+  z-index: 10000000000000;
 }

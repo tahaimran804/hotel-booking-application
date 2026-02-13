@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
+import hotel1 from "../assets/hotel1.jpg"
+import hotel2 from "../assets/hotel2.jpg"
+import hotel3 from "../assets/hotel3.jpg"
+import hotel4 from "../assets/hotel4.jpg"
+import hotel5 from "../assets/hotel5.jpg"
+import Skeleton from "react-loading-skeleton";
 
 const TravelDeals = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [slidesToShow, setSlidesToShow] = useState(4);
-
+    const [loading, setLoading] = useState(true);
     const hotelDeals = [
         {
             id: 1,
-            image: "/hotel1.jpg",
+            image: hotel1,
             name: "Dubai",
             countryName: "United Arab Emirates",
             fromText: "From",
@@ -21,7 +27,7 @@ const TravelDeals = () => {
         },
         {
             id: 2,
-            image: "/hotel2.jpg",
+            image: hotel2,
             name: "Istanbul",
             countryName: "Turkey",
             fromText: "From",
@@ -32,7 +38,7 @@ const TravelDeals = () => {
         },
         {
             id: 3,
-            image: "/hotel3.jpg",
+            image: hotel3,
             name: "Paris",
             countryName: "France",
             fromText: "From",
@@ -43,7 +49,7 @@ const TravelDeals = () => {
         },
         {
             id: 4,
-            image: "/hotel4.jpg",
+            image: hotel4,
             name: "Kuala Lumpur",
             countryName: "Malaysia",
             fromText: "From",
@@ -54,7 +60,7 @@ const TravelDeals = () => {
         },
         {
             id: 5,
-            image: "/hotel5.jpg",
+            image: hotel5,
             name: "Riyadh",
             countryName: "Saudi Arabia",
             fromText: "From",
@@ -64,7 +70,6 @@ const TravelDeals = () => {
             reviews: "980 reviews",
         },
     ];
-
     useEffect(() => {
         const updateSlides = () => {
             if (window.innerWidth < 550) setSlidesToShow(1);
@@ -77,24 +82,29 @@ const TravelDeals = () => {
         return () => window.removeEventListener("resize", updateSlides);
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
+    }, [])
+
+
     const nextSlide = () => {
         if (currentSlide < hotelDeals.length - slidesToShow) {
             setCurrentSlide(currentSlide + 1);
         }
     };
-
     const prevSlide = () => {
         if (currentSlide > 0) {
             setCurrentSlide(currentSlide - 1);
         }
     };
-
     return (
         <section className="w-full py-10 bg-gray-50">
             <Container className="flex flex-col w-full items-end justify-end gap-5">
                 <div className="flex w-full items-center justify-between">
                     <div className="flex flex-col gap-2 max-w-2xl">
-                        <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
+                        <h1 style={{ fontFamily: "'Roboto', sans-serif" }} className="text-2xl md:text-3xl font-bold text-gray-900">
                             Travel deals under $230
                         </h1>
 
@@ -115,43 +125,64 @@ const TravelDeals = () => {
                             transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
                         }}
                     >
-                        {hotelDeals.map((item) => (
-                            <div
-                                key={item.id}
+                        {(loading ? Array(slidesToShow).fill(null) : hotelDeals).map((item, index) => {
+                            return (<div
+                                key={item?.id || index}
                                 className="px-2 flex-shrink-0"
                                 style={{ width: `${100 / slidesToShow}%` }}
                             >
                                 <div className="bg-white cursor-pointer rounded-xl overflow-hidden shadow-sm hover:shadow-md duration-300">
-                                    <img
-                                        src={item.image}
-                                        alt={item.name}
-                                        className="w-full h-56 object-cover"
-                                    />
+                                    {loading ? (
+                                        <Skeleton height={230} />
+                                    ) : (
+                                        <img
+                                            src={item.image}
+                                            alt={item.name}
+                                            className="w-full h-56 object-cover"
+                                        />
+                                    )}
 
                                     <div className="p-4">
-                                        <h2 className="text-lg font-semibold">{item.name}</h2>
-                                        <p className="text-sm text-gray-500">{item.countryName}</p>
+                                        <h2 className="text-lg font-semibold">
+                                            {loading ? <Skeleton width={120} /> : item.name}
+                                        </h2>
+                                        <p className="text-sm text-gray-500">
+                                            {loading ? <Skeleton width={160} /> : item.countryName}
+                                        </p>
 
                                         <div className="mt-2">
-                                            <span className="text-sm text-gray-500">
-                                                {item.fromText}
-                                            </span>{" "}
-                                            <span className="text-lg font-semibold">
-                                                {item.stayPrice}
-                                            </span>
-                                            <span className="text-sm text-gray-500">
-                                                {item.perNight}
-                                            </span>
+                                            {loading ? (
+                                                <Skeleton width={180} />
+                                            ) : (
+                                                <>
+                                                    <span className="text-sm text-gray-500">
+                                                        {item.fromText}
+                                                    </span>{" "}
+                                                    <span className="text-lg font-semibold">
+                                                        {item.stayPrice}
+                                                    </span>
+                                                    <span className="text-sm text-gray-500">
+                                                        {item.perNight}
+                                                    </span>
+                                                </>
+                                            )}
                                         </div>
 
                                         <p className="text-sm flex items-center gap-2 text-gray-600 mt-1">
-                                            <span className="text-yellow-600"><IoStar /></span> {item.rating} · {item.reviews}
+                                            {loading ? (
+                                                <Skeleton width={140} />
+                                            ) : (
+                                                <>
+                                                    <span className="text-yellow-600"><IoStar /></span> {item.rating} · {item.reviews}
+                                                </>
+                                            )}
                                         </p>
                                     </div>
 
                                 </div>
                             </div>
-                        ))}
+                            )
+                        })}
                     </div>
                 </div>
 
@@ -209,7 +240,7 @@ const TravelDeals = () => {
                     </button>
                 </div>
             </Container>
-        </section>
+        </section >
     );
 };
 

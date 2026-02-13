@@ -3,14 +3,15 @@ import Container from './Container'
 import { Link } from 'react-router-dom'
 import { FaFacebook, FaYoutube, FaInstagram } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6";
-
+import PlayStore from "../assets/playstore-android.svg"
+import AppStore from "../assets/app-store.svg"
 const Footer = () => {
 
     const companyLinks = [
         {
             id: 1,
             name: "About",
-            url: "#"
+            url: "/about-us"
         },
         {
             id: 2,
@@ -25,7 +26,7 @@ const Footer = () => {
         {
             id: 4,
             name: "Blog",
-            url: "#"
+            url: "/blog"
         },
         {
             id: 5,
@@ -162,15 +163,15 @@ const Footer = () => {
                         }} className="text-[#212A30] text-[14px] font-bold  mt-2">
                             Get the KAYAK app
                         </h1>
-                        <ul className="text-[#192024] flex flex-col gap-2 mt-3 text-[14px] capitalize">
+                        <ul className="text-[#192024] flex items-center gap-2 mt-3 text-[14px] capitalize">
                             <Link to={"#"}>
-                                <li className="w-30 h-12">
-                                    <img className='w-full h-full' src="Google_Play_Store.png" alt="Google play store" />
+                                <li className="w-10 h-12">
+                                    <img className='w-full h-full' src={PlayStore} alt="Google play store" />
                                 </li>
                             </Link>
                             <Link to={"#"}>
-                                <li className="w-30 h-12">
-                                    <img className='w-full h-full' src="App_Store_Download.png" alt="App store" />
+                                <li className="w-10 h-12">
+                                    <img className='w-full h-full' src={AppStore} alt="App store" />
                                 </li>
                             </Link>
                         </ul>

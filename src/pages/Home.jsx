@@ -1,22 +1,20 @@
 import React from 'react'
-import Asidebar from '../components/Asidebar'
 import HeroSection from '../components/HeroSection'
 import WhyChooseUs from '../components/WhyChooseUs'
 import TravelDeals from '../components/TravelDeals'
 import Travelpros from '../components/Travelpros'
-import Footer from '../components/Footer'
 import FindAccommodations from '../components/FindAccommodations'
+import SaveSearch from '../components/SaveSearch'
 
 const Home = () => {
     return (
         <>
-            <Asidebar />
             <HeroSection />
+            <SaveSearch />
             <WhyChooseUs />
             <TravelDeals />
             <Travelpros />
             <FindAccommodations />
-            <Footer />
         </>
     )
 }

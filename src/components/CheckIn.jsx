@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import PriceCalendar from './RangeCalendar';
+import { IoAdd } from "react-icons/io5";
+import { FiMinus } from "react-icons/fi";
 
 const bookingFields = {
     destination: {
@@ -13,7 +16,7 @@ const bookingFields = {
 const cities = ["Dubai", "London", "New York", "Paris", "Istanbul"];
 
 const CheckIn = () => {
-
+    const [showCalendar, setShowCalendar] = useState(false);
     const [data, setData] = useState({
         destination: "",
         checkIn: "",
@@ -44,7 +47,7 @@ const CheckIn = () => {
     return (
         <div className="py-4 flex flex-col gap-4 px-4 w-full bg-white shadow-sm rounded-sm">
             <div className="grid grid-cols-12 gap-3 items-end">
-                <div className="col-span-12 lg:col-span-4">
+                <div className="col-span-12 lg:col-span-4 relative">
                     <p className="text-xs text-gray-500">{bookingFields.destination.label}</p>
                     <input
                         type="text"
@@ -58,7 +61,7 @@ const CheckIn = () => {
                     />
 
                     {showCities && data.destination && (
-                        <div className="bg-white border border-gray-100 w-full mt-1 rounded-sm shadow-lg">
+                        <div className="bg-white border absolute z-10 border-gray-100 w-full mt-1 rounded-sm shadow-lg">
                             {filteredCities.map((city, i) => (
                                 <div
                                     key={i}
@@ -74,24 +77,27 @@ const CheckIn = () => {
                         </div>
                     )}
                 </div>
-                <div className=" lg:col-span-2 col-span-6">
-                    <p className="text-xs text-gray-500">{bookingFields.checkIn.label}</p>
-                    <input
-                        type="date"
-                        className="w-full mt-1 outline-0 border border-gray-200 rounded-sm px-2 py-2 text-sm"
-                        value={data.checkIn}
-                        onChange={(e) => setData({ ...data, checkIn: e.target.value })}
-                    />
+
+                <div className="lg:col-span-4 col-span-12 relative">
+                    <p className="text-xs text-gray-500">Check-in — Check-out</p>
+                    <div
+                        onClick={() => setShowCalendar(!showCalendar)}
+                        className="w-full mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm cursor-pointer hover:bg-gray-100"
+                    >
+                        {data.checkIn && data.checkOut
+                            ? `${data.checkIn} → ${data.checkOut}`
+                            : "Select dates"}
+                    </div>
+                    {showCalendar && (
+                    <PriceCalendar
+                            data={data}
+                            setData={setData}
+                            close={() => setShowCalendar(false)}
+                        />
+                    )}
+
                 </div>
-                <div className="lg:col-span-2 col-span-6">
-                    <p className="text-xs text-gray-500">{bookingFields.checkOut.label}</p>
-                    <input
-                        type="date"
-                        className="w-full mt-1 border border-gray-200 outline-0 rounded-sm px-2 py-2 text-sm"
-                        value={data.checkOut}
-                        onChange={(e) => setData({ ...data, checkOut: e.target.value })}
-                    />
-                </div>
+
                 <div className="lg:col-span-2 col-span-12 relative">
                     <p className="text-xs text-gray-500">{bookingFields.guests.label}</p>
                     <div
@@ -135,7 +141,7 @@ const CheckIn = () => {
                                                 type="number"
                                                 min="0"
                                                 max="17"
-                                                className="border rounded-sm px-2 py-1 text-sm"
+                                                className="border border-gray-300 outline-0 rounded-sm px-2 py-1 text-sm"
                                                 value={age}
                                                 onChange={(e) => {
                                                     const updatedAges = [...data.childrenAges];
@@ -151,7 +157,6 @@ const CheckIn = () => {
                         </div>
                     )}
                 </div>
-
                 <div className="lg:col-span-2 col-span-12">
                     <button className="w-full py-2 bg-orange-600 text-white rounded-lg text-sm">
                         Search
@@ -161,21 +166,19 @@ const CheckIn = () => {
         </div>
     );
 };
-
-/* 🔹 Reusable Counter Component */
 const GuestCounter = ({ label, value, onChange, min }) => (
     <div className="flex items-center justify-between mb-3">
         <span className="text-sm">{label}</span>
         <div className="flex items-center gap-3">
             <button
-                className="w-6 h-6 border rounded"
+                className="w-6 h-6 border border-gray-100 flex items-center justify-center text-sm cursor-pointer rounded"
                 onClick={() => value > min && onChange(value - 1)}
-            >−</button>
+            ><FiMinus /></button>
             <span className="text-sm">{value}</span>
             <button
-                className="w-6 h-6 border rounded"
+                className="w-6 h-6 border border-gray-100 flex items-center justify-center text-sm cursor-pointer rounded"
                 onClick={() => onChange(value + 1)}
-            >+</button>
+            ><IoAdd /></button>
         </div>
     </div>
 );
