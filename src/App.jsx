@@ -23,6 +23,7 @@ import ManageFAQContent from "./admin/Pages/ManageFAQContent"
 import ManagePrivacyContentPolicy from "./admin/Pages/ManagePrivacyContentPolicy"
 import TrackingIDs from "./admin/Pages/TrackingIDs"
 import ScrollTop from "./components/ScrollTop"
+import Faq from "./pages/Faq"
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route element={<Favorite_hotels />} path="/favorite-hotels" />
           <Route element={<About />} path="/about-us" />
           <Route element={<HelpAndFaq />} path="/help-faq" />
+          <Route element={<Faq />} path="faqDetails" />
           <Route element={<Blog />} path="/blog" />
           <Route element={<BlogDetails />} path="/blog-details" />
           <Route element={<Error />} path="*" />
