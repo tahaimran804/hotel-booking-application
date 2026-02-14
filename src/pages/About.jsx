@@ -1,17 +1,28 @@
 import React from 'react'
 import Container from '../components/Container'
 import Corporate_hero_background from "../assets/corporate_hero_background.jpg"
+import { CiLollipop } from 'react-icons/ci'
+import Explore from "../assets/Explore-Everywhere-Article-Cards.jpg"
+
+
+import About_Us_Hero1 from "../assets/About-Us_Hero1.jpg"
+import otscher from "../assets/otscher.jpg"
+import Our_People from "../assets/Our-People_Hero4.jpg"
+import Silver_Article from "../assets/Silver-Article-10.jpg"
+import AboutDetailsCard from '../components/AboutDetailsCard'
+
+
 
 const About = () => {
     return (
         <>
             <div
                 style={{ backgroundImage: `url(${Corporate_hero_background})` }}
-                className="w-full h-[300px] px-16 flex items-center bg-cover bg-center relative"
+                className="w-full h-[300px] px-4 lg:px-16 flex items-center bg-cover bg-center relative"
             >
                 <div className="absolute inset-0 bg-black/40"></div>
                 <h1
-                    className="text-4xl font-bold text-white relative z-10"
+                    className="text-2xl md:text-4xl font-bold text-white relative z-10"
                     style={{ fontFamily: "'Roboto', sans-serif" }}
                 >
                     Confident Booking starts at KAYAK.
@@ -21,9 +32,10 @@ const About = () => {
             <div className='bg-gray-100 h-full w-full'>
                 <Container className='flex flex-col items-start w-full gap-4 sm:gap-10 py-10 '>
                     <div className='flex flex-col items-start gap-4 w-full'>
-                        <h1 className="text-3xl font-bold text-black"
+                        <h1 className="text-xl md:text-3xl font-bold text-black"
                             style={{ fontFamily: "'Roboto', sans-serif" }}>
-                            Helping travelers find the perfect stay with confidence and transparency.
+                            Since 2004, KAYAK has been revolutionizing the travel industry. Metasearch for travel? No one was doing it. Until we did.
+
                         </h1>
                         <div className='flex flex-col items-start w-full'>
                             <p className='text-sm w-full text-gray-600'>
@@ -38,8 +50,6 @@ const About = () => {
                     </div>
 
                     <section className="flex flex-col gap-8 mt-10">
-
-                        {/* What Drives Platform */}
                         <div className="flex flex-col gap-3">
                             <h1
                                 className="text-2xl font-bold text-black"
@@ -122,6 +132,23 @@ const About = () => {
                     </section>
                 </Container>
             </div>
+
+            <Container className='py-10 flex flex-col items-center gap-10'>
+                <div className='bg-[#F5BFC3] flex flex-col items-start gap-1 w-full py-4 px-4 rounded-md'>
+                    <h1 className='text-2xl font-bold flex items-center gap-1' style={{ fontFamily: "'Roboto', sans-serif" }}> <CiLollipop /> Top tip</h1>
+                    <p className='text-2xl font-normal' style={{ fontFamily: "'Lobster Two', sans-serif" }}>We’re on a mission to become the world’s number one travel ally, helping people everywhere move faster, travel smarter and discover more of the world with confidence.</p>
+                </div>
+
+                <section className='flex flex-col items-start w-full gap-5'>
+                    <AboutDetailsCard image={Explore} title={"Global leader in travel"} desc={"Travel is all about freedom. So it makes sense that planning and booking your trip should be simple, not a chore. We know you're looking for the best prices and maximum flexibility to choose what's right for you. That’s why we're always hard at work making sure our app and website offer a super straightforward and speedy experience. With more than 1200 partners across the world we’re constantly developing our best-in-class network to connect travellers with the most accurate, trusted options so everyone can find the best offer for them. With over 80 billion prices searched every day, travellers can be sure they've seen the best possible options, all in one place."} />
+                    <AboutDetailsCard image={About_Us_Hero1} title={"Effortless travel planning for everyone"} desc={"We do the hard work so our travellers don’t have to. We use our data, insights and tech innovation to make the complex simple, so you can get back to the more important stuff - stress-free planning, booking and travelling."} />
+                    <AboutDetailsCard image={otscher} title={"A force for positive change"} desc={"We believe that travel should have a positive impact. That’s why we’re committed to helping shape a more responsible future for travel in collaboration with our partners. From communicating the environmental impact of flights and sharing unbiased information so you can make an informed choice, to making our site as accessible as possible and our business as inclusive as can be, our thinking isn’t just for today and tomorrow, it’s for generations to come."} />
+                    <AboutDetailsCard image={Our_People} title={"Always unbiased, honest and transparent"} desc={"As travellers ourselves, we always lead with honesty and transparency - and we hold our partners to the same high standards. That means no hidden fees, no secret charges, no added cost to you, so we always remain unbiased."} />
+                    <AboutDetailsCard image={Silver_Article} title={"Hotels"} desc={"Getting there is only part of the journey. We're here to help round-off your entire trip with millions of rooms from all around the world, from low-cost to luxury. Compare all the biggest names right here. And with our great rates with the world's leading hotels, you’ll save even more."} />
+                </section>
+            </Container>
+
+
         </>
     )
 }

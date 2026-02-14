@@ -184,7 +184,7 @@ const FiltersButtons = () => {
                     )
                 })}
 
-                {showInfo && (<div className='w-120 left-0 h-36 py-4 px-4 rounded-lg absolute flex flex-col items-start gap-1 top-14 bg-white border border-gray-100'>
+                {showInfo && (<div className='w-120 left-0 z-40 shadow-lg h-36 py-4 px-4 rounded-lg absolute flex flex-col items-start gap-1 top-14 bg-white border border-gray-100'>
                     <h1 style={{
                         fontFamily: "'Roboto', sans-serif"
                     }} className='text-lg font-semibold text-black'>What is our ‘Recommended’ order?</h1>
@@ -195,7 +195,7 @@ const FiltersButtons = () => {
                 </div>)}
 
                 {newerestLocation && (
-                    <div className='w-80 -right-20 z-50 h-60 overflow-y-auto no_scrollBar py-4 rounded-lg absolute flex flex-col gap-3 top-14 bg-white border border-gray-100'>
+                    <div className='w-80 right-0 shadow-lg z-20 h-60 overflow-y-scroll py-4 rounded-lg absolute flex flex-col gap-3 top-14 bg-white border border-gray-100'>
                         <div className='flex flex-col items-start gap-2'>
                             <h4 className="font-semibold bg-gray-100 py-2 px-4 w-full text-sm">
                                 {nearbyPlacesData.cityDistance.label}

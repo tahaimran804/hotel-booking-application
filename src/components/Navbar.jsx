@@ -13,7 +13,7 @@ const Navbar = () => {
     const location = useLocation()
     const isHotelDetails = location.pathname.includes("hoteldetails");
     return (
-        <div className={`border-b ${!isHotelDetails ? "sticky top-0" : ""} bg-white  z-50 border-gray-100`}>
+        <div className={`border-b ${!isHotelDetails ? "sticky top-0" : ""} bg-white z-50 border-gray-100`}>
             <Container>
                 <header className='py-4 w-full h-auto'>
                     <nav className='flex items-center justify-between w-full'>

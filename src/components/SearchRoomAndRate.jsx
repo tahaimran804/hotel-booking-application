@@ -37,11 +37,11 @@ const SearchRoomAndRates = () => {
         });
     };
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setLoading(false)
-    //     }, 2000);
-    // }, [])
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
+    }, [])
 
 
     return (
