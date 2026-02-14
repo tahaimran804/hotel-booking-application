@@ -25,7 +25,7 @@ import TrackingIDs from "./admin/Pages/TrackingIDs"
 
 const App = () => {
   return (
-    <BrowserRouter basename="/hotel-booking-application">
+    <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route element={<Home />} path="/" />
