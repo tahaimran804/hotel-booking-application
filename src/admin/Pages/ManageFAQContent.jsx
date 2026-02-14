@@ -67,7 +67,7 @@ const ManageFAQContent = () => {
 
                 <button
                     type='submit'
-                    className='bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold'
+                    className='bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-semibold'
                 >
                     {editId ? "Update FAQ" : "Add FAQ"}
                 </button>

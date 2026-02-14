@@ -102,7 +102,7 @@ const Notifications = () => {
 
                     <button
                         onClick={() => setOpenNotifacation(false)}
-                        className='text-3xl text-gray-500 hover:text-red-500'
+                        className='text-3xl cursor-pointer text-gray-500 hover:text-red-500'
                     >
                         <IoIosClose />
                     </button>

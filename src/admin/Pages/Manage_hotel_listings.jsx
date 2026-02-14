@@ -163,7 +163,7 @@ const Manage_hotel_listings = () => {
                                     {/* Actions */}
                                     <td className='px-4 whitespace-nowrap py-3'>
                                         <div className='flex gap-3'>
-                                            <button className='text-blue-500 hover:text-blue-700 text-lg'>
+                                            <button className='text-orange-500 hover:text-orange-700 text-lg'>
                                                 <FiEdit />
                                             </button>
 
