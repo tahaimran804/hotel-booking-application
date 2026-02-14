@@ -22,10 +22,12 @@ import ManageTermsContentConditions from "./admin/Pages/ManageTermsContentCondit
 import ManageFAQContent from "./admin/Pages/ManageFAQContent"
 import ManagePrivacyContentPolicy from "./admin/Pages/ManagePrivacyContentPolicy"
 import TrackingIDs from "./admin/Pages/TrackingIDs"
+import ScrollTop from "./components/ScrollTop"
 
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollTop />
       <Routes>
         <Route element={<Layout />}>
           <Route element={<Home />} path="/" />
