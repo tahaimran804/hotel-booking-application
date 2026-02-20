@@ -351,11 +351,8 @@ const FindAccommodations = () => {
                 }}>Search for places to stay by destination</h1>
                 <p style={{
                     fontFamily: "'Roboto', sans-serif"
-                }} className='text-sm sm:text-lg font-normal'>Find Accommodations</p>
+                }} className='text-sm sm:text-lg font-normal'>Find destination</p>
             </div>
-            <p style={{
-                fontFamily: "'Roboto', sans-serif"
-            }} className='text-sm py-5 font-normal'>Can I really save on places to stay near me and lodging in other popular destinations by using KAYAK? Yes! KAYAK searches for accommodation deals on hundreds of accommodation comparison sites to help you find deals on <Link to={"/"} className='text-[#07647E]'>hotels, vacation rentals</Link> and more.</p>
 
             <div className='gap-1 md:gap-4 grid items-start grid-cols-1 md:grid-cols-3'>
                 {accommodationData.map((elemItem) => (
@@ -382,8 +379,8 @@ const FindAccommodations = () => {
                                         {cityData.hotels.map((hotel, i) => (
                                             <Link key={i} to="#" className='w-full'>
                                                 <li className="flex justify-between w-full group cursor-pointer">
-                                                    <span className="text-sm text-gray-500 group-hover:underline truncate flex-1">{hotel.name}</span>
-                                                    <span className="text-sm text-gray-500 group-hover:underline flex-shrink-0">{hotel.price}</span>
+                                                    <span className="text-sm text-gray-500 hover:text-[var(--primary-color)] group-hover:underline truncate flex-1">{hotel.name}</span>
+                                                    <span className="text-sm text-gray-500 group-hover:underline group-hover:text-[var(--primary-color)] flex-shrink-0">{hotel.price}</span>
                                                 </li>
                                             </Link>
                                         ))}
@@ -406,23 +403,16 @@ const FindAccommodations = () => {
 
             </div>
 
-            <div className='flex flex-col pb-10 items-start gap-1'>
-                <p style={{
-                    fontFamily: "'Roboto', sans-serif"
-                }} className='text-sm pt-5 font-normal'>
-
-                    Search cheap hotels with KAYAK. Use the hotel finder to search for the cheapest hotel deal for all major destinations <Link to={"/"} className='text-[#07647E]'>around the world</Link>. KAYAK searches hundreds of hotel booking sites to help you find hotels and book hotels that suit you best. Since KAYAK searches many hotel sites at once, you can find discount hotels quickly, including <Link to={"/"} className='text-[#07647E]'>Hotels Under $50</Link> and   <Link to={"/"} className='text-[#07647E]'>Hotels Under $100</Link> Discover hotel discounts now and make your hotel reservation today.
-                    Not what you’re looking for? Find tho
-                </p>
-                <p style={{
-                    fontFamily: "'Roboto', sans-serif"
-                }} className='text-sm pt-5 font-normal'>
-                    Not what you’re looking for? Find thousands of other <Link to={"/"} className='text-[#07647E]'>hotels</Link>, <Link to={"/"} className='text-[#07647E]'>flights</Link> and <Link to={"/"} className='text-[#07647E]'>car rentals</Link> with KAYAK.
+            <div className="flex flex-col pb-10 items-start gap-4 w-full">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Find the best hotel deals for your next trip. Our hotel search tool compares prices from multiple booking platforms to help you discover the most affordable stays in top destinations{" "}
+                    <Link to="/" className="text-[var(--primary-color)] font-medium hover:underline">
+                        around the world
+                    </Link>.
+                    Whether you're planning a business trip or a relaxing getaway, we make it easy to find a hotel that matches your budget and preferences.
                 </p>
             </div>
-
-
-        </Container >
+        </Container>
     )
 }
 

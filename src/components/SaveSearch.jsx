@@ -32,8 +32,8 @@ const SaveSearch = () => {
         }
     ];
     const responsive = {
-        desktop: { breakpoint: { max: 3000, min: 1400 }, items: 6 },
-        laptop: { breakpoint: { max: 1400, min: 1024 }, items: 5 },
+        desktop: { breakpoint: { max: 3000, min: 1400 }, items: 4 },
+        laptop: { breakpoint: { max: 1400, min: 1024 }, items: 3 },
         tablet: { breakpoint: { max: 1024, min: 640 }, items: 3 },
         mobile: { breakpoint: { max: 640, min: 0 }, items: 2 },
         minemobile: { breakpoint: { max: 400, min: 0 }, items: 1 }

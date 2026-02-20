@@ -66,9 +66,9 @@ const Home = () => {
             />
             <SaveSearch />
             {/* <WhyChooseUs /> */}
-            {/* <TravelDeals />
-            <Travelpros />
-            <FindAccommodations /> */}
+            <TravelDeals />
+            {/* <Travelpros /> */}
+            <FindAccommodations />
         </>
     )
 }

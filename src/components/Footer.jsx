@@ -28,7 +28,7 @@ const Footer = () => {
     ]
 
     return (
-        <footer className="bg-gray-50 border-t border-gray-200">
+        <footer className="bg-[var(--primary-color)] border-t border-gray-200">
             <div className="bg-gray-100 text-black py-10">
                 <Container>
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -48,7 +48,7 @@ const Footer = () => {
                                 placeholder="Enter your email"
                                 className="px-4 py-3 w-full md:w-[280px] bg-white border border-gray-200 rounded-l-full text-black outline-none"
                             />
-                            <button className="border cursor-pointer border-gray-200 text-black px-6 py-3 rounded-r-md font-semibold transition">
+                            <button className="border cursor-pointer bg-[var(--primary-color)] border-gray-200 text-[var(--accent-color)] text-sm px-6 py-3 rounded-r-full font-semibold transition">
                                 Subscribe
                             </button>
                         </div>
@@ -62,11 +62,11 @@ const Footer = () => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 py-14">
 
                     <div className="col-span-2 lg:col-span-1">
-                        <h2 className="text-black text-xl font-bold mb-3">
+                        <h2 className="text-[var(--accent-color)] text-xl font-bold mb-3">
                             Travel Booking
                         </h2>
 
-                        <p className="text-gray-600 text-sm leading-relaxed">
+                        <p className="text-[var(--accent-color)] text-sm leading-relaxed">
                             Compare hotel prices and find the best deals worldwide.
                             Making travel planning easier and smarter.
                         </p>
@@ -88,7 +88,7 @@ const Footer = () => {
 
                     {footerData.map((section, index) => (
                         <div key={index}>
-                            <h3 className="text-black font-semibold mb-4 uppercase text-sm">
+                            <h3 className="text-[var(--accent-color)] font-semibold mb-4 uppercase text-sm">
                                 {section.title}
                             </h3>
 
@@ -97,7 +97,7 @@ const Footer = () => {
                                     <li key={i}>
                                         <Link
                                             to="#"
-                                            className="text-gray-600 hover:text-orange-500 transition"
+                                            className="text-[var(--accent-color)] hover:text-[var(--accent-color)]/70 transition"
                                         >
                                             {link}
                                         </Link>
@@ -111,27 +111,7 @@ const Footer = () => {
             </Container>
 
 
-            <div className="bg-gray-100 py-6">
-                <Container>
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-
-                        <p className="text-gray-600 text-sm">
-                            Trusted by millions of travelers worldwide
-                        </p>
-
-                        <div className="flex gap-4 text-sm font-semibold text-gray-700">
-                            <span>VISA</span>
-                            <span>Mastercard</span>
-                            <span>PayPal</span>
-                            <span>Stripe</span>
-                        </div>
-
-                    </div>
-                </Container>
-            </div>
-
-
-            <div className="bg-gray-50 text-white py-6">
+            <div className="bg-[var(--primary-color)] border-t border-gray-600 text-white py-6">
                 <Container>
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
 
@@ -139,14 +119,13 @@ const Footer = () => {
                             {[FaFacebook, FaXTwitter, FaYoutube, FaInstagram].map((Icon, index) => (
                                 <div
                                     key={index}
-                                    className="bg-orange-600 p-3 rounded-full cursor-pointer hover:bg-orange-700 transition"
-                                >
+                                    className="bg-[var(--accent-color)]  text-[var(--primary-color)] p-3 rounded-full cursor-pointer transition">
                                     <Icon size={18} />
                                 </div>
                             ))}
                         </div>
 
-                        <p className="text-sm text-black text-center">
+                        <p className="text-sm text-[var(--accent-color)] text-center">
                             © 2026 Kayak Booking. All rights reserved.
                         </p>
 
