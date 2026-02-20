@@ -217,28 +217,28 @@ const HotelDetails = () => {
 
                         <div className='flex overflow-x-scroll no_scrollBar items-start md:w-auto justify-start w-full gap-6'>
                             <a href="#overView">
-                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-orange-600 
-                                     ${activeSection === "overView" ? "text-orange-600" : "text-black"}
+                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-[var(--primary-color)] 
+                                     ${activeSection === "overView" ? "text-[var(--primary-color)]" : "text-black"}
                                     `}>Overview</button>
                             </a>
                             <a href="#Deals">
-                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-orange-600
-                                     ${activeSection === "Deals" ? "text-orange-600" : "text-black"}
+                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-[var(--primary-color)]
+                                     ${activeSection === "Deals" ? "text-[var(--primary-color)]" : "text-black"}
                                     `}>Deals</button>
                             </a>
                             <a href="#Location">
-                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-orange-600
-                                     ${activeSection === "Location" ? "text-orange-600" : "text-black"}
+                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-[var(--primary-color)]
+                                     ${activeSection === "Location" ? "text-[var(--primary-color)]" : "text-black"}
                                     `}>Location</button>
                             </a>
                             <a href="#Details">
-                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-orange-600
-                                     ${activeSection === "Details" ? "text-orange-600" : "text-black"}
+                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-[var(--primary-color)]
+                                     ${activeSection === "Details" ? "text-[var(--primary-color)]" : "text-black"}
                                     `}>Details</button>
                             </a>
                             <a href="#facilities">
-                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-orange-600 
-                                     ${activeSection === "facilities" ? "text-orange-600" : "text-black"}
+                                <button className={`text-sm cursor-pointer py-4 font-semibold hover:text-[var(--primary-color)] 
+                                     ${activeSection === "facilities" ? "text-[var(--primary-color)]" : "text-black"}
                                     `}>Amenities</button>
                             </a>
                         </div>
@@ -248,7 +248,7 @@ const HotelDetails = () => {
                             <h2 className='text-sm md:text-2xl font-bold' style={{
                                 fontFamily: "'Roboto', sans-serif"
                             }}>Rs 2,987</h2>
-                            <button className='py-2 px-4 md:px-5 rounded-md bg-orange-600 text-white'>View deals</button>
+                            <button className='py-2 px-4 md:px-5 rounded-md bg-[var(--primary-color)] text-white'>View deals</button>
                         </div>
                     </div>
 
@@ -295,7 +295,7 @@ const HotelDetails = () => {
                                         className='text-lg md:text-xl font-bold'
                                     >
                                         You’ve found a gem! Prices for your hotel are currently
-                                        <span className='text-orange-600'> lower </span>
+                                        <span className='text-[var(--primary-color)]'> lower </span>
                                         than usual
                                     </h1>
                                 </div>
@@ -418,7 +418,7 @@ const HotelDetails = () => {
                                                     <p className='text-sm text-gray-500'>a night</p>
                                                 </div>
 
-                                                <button className='py-2 px-5 bg-orange-600 text-white rounded-md'>Go to site</button>
+                                                <button className='py-2 px-5 bg-[var(--primary-color)] text-white rounded-md'>Go to site</button>
                                             </div>
                                         </>
 
@@ -450,7 +450,7 @@ const HotelDetails = () => {
                                             <h2 className='text-xl font-bold'>Rs 89,918</h2>
                                             <p className='text-sm text-gray-500'>a night</p>
                                         </div>
-                                        <button className='py-2 px-5 bg-orange-600 text-white rounded-md'>Go to site</button>
+                                        <button className='py-2 px-5 bg-[var(--primary-color)] text-white rounded-md'>Go to site</button>
                                     </div>
 
                                 </div>
@@ -476,7 +476,7 @@ const HotelDetails = () => {
                                             <h2 className='text-xl font-bold'>Rs 89,885</h2>
                                             <p className='text-sm text-gray-500'>a night</p>
                                         </div>
-                                        <button className='py-2 px-5 bg-orange-600 text-white rounded-md'>Go to site</button>
+                                        <button className='py-2 px-5 bg-[var(--primary-color)] text-white rounded-md'>Go to site</button>
                                     </div>
 
                                 </div>
@@ -559,7 +559,7 @@ const HotelDetails = () => {
                                                             </li>
                                                         })}
                                                     </ul>
-                                                    <button className='bg-orange-600 text-white text-sm py-2 px-5 rounded-full '>View More</button>
+                                                    <button className='bg-[var(--primary-color)] text-white text-sm py-2 px-5 rounded-full '>View More</button>
                                                 </>
                                             )}
                                         </div>

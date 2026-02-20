@@ -136,7 +136,7 @@ const About = () => {
             <Container className='py-10 flex flex-col items-center gap-10'>
                 <div className='bg-[#F5BFC3] flex flex-col items-start gap-1 w-full py-4 px-4 rounded-md'>
                     <h1 className='text-2xl font-bold flex items-center gap-1' style={{ fontFamily: "'Roboto', sans-serif" }}> <CiLollipop /> Top tip</h1>
-                    <p className='text-2xl font-normal' style={{ fontFamily: "'Lobster Two', sans-serif" }}>We’re on a mission to become the world’s number one travel ally, helping people everywhere move faster, travel smarter and discover more of the world with confidence.</p>
+                    <p className='text-2xl font-normal' style={{ fontFamily: "'Lobster Two', sans-serif" }} >We’re on a mission to become the world’s number one travel ally, helping people everywhere move faster, travel smarter and discover more of the world with confidence.</p>
                 </div>
 
                 <section className='flex flex-col items-start w-full gap-5'>

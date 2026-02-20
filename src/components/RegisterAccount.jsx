@@ -70,7 +70,7 @@ const RegisterAccount = () => {
 
                             <button
                                 onClick={handleContinue}
-                                className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-600/90 cursor-pointer transition"
+                                className="w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-color)]/90 cursor-pointer transition"
                             >
                                 Continue
                             </button>
@@ -125,7 +125,7 @@ const RegisterAccount = () => {
                                 />
                             </div>
 
-                            <button className="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-600/90 cursor-pointer transition">
+                            <button className="w-full bg-[var(--primary-color)] text-white py-3 rounded-lg font-semibold hover:bg-[var(--primary-color)]/90 cursor-pointer transition">
                                 Create Account
                             </button>
 

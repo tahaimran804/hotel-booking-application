@@ -7,6 +7,7 @@ import FindAccommodations from '../components/FindAccommodations'
 import SaveSearch from '../components/SaveSearch'
 import axios from 'axios'
 import { json } from 'd3'
+import OurPartners from '../components/OurPartners'
 
 const Home = () => {
     const [countries, setCountries] = useState([])
@@ -64,6 +65,7 @@ const Home = () => {
                 selectedCity={selectedCity}
                 setSelectedCity={setSelectedCity}
             />
+            <OurPartners />
             <SaveSearch />
             {/* <WhyChooseUs /> */}
             <TravelDeals />

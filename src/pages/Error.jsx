@@ -12,9 +12,9 @@ const Error = () => {
                 >Page not found</h1>
                 <p style={{
                     fontFamily: "'Roboto', sans-serif"
-                }} className="text-sm font-normal text-center text-gray-500">With Skyscanner you can go anywhere. But first you need to go back to the homepage.</p>
+                }} className="text-sm font-normal text-center text-gray-500">With RateCompares you can go anywhere. But first you need to go back to the homepage.</p>
                 <Link to={"/"}>
-                    <button className="py-2 cursor-pointer px-6 bg-orange-600 text-white rounded-md">Go Back</button>
+                    <button className="py-2 cursor-pointer px-10 bg-[var(--primary-color)] text-[var(--accent-color)] rounded-sm">Go Back</button>
                 </Link>
             </div>
 

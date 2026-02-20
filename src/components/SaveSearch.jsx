@@ -72,11 +72,10 @@ const SaveSearch = () => {
                         <div
                             key={index}
                             className="h-[200px] cursor-pointer 
-                            border border-[var(--border-color)] 
+                            border border-gray-100
                             bg-[var(--accent-color)] 
                             rounded-xl flex flex-col gap-4 py-4 px-4"
                         >
-
                             <div className="flex items-center gap-2">
                                 <span className="text-lg bg-[var(--primary-color)] text-[var(--accent-color)] p-2 rounded-full">
                                     <IoBedOutline />

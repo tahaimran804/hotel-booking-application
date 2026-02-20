@@ -164,7 +164,7 @@ const BlogDetails = () => {
                         </div>
 
                         <div className='flex flex-col items-start py-4 px-4 my-4 rounded-md bg-[#f5bfc3] w-full'>
-                            <p className='text-sm font-normal text-black'>However, travelers who are fed up with resort fees got a recent win. In 2024, the <span className='text-blue-500 underline'>Federal Trade Commission</span> announced rules around what it describes as “junk fees” – and, more specifically, that hotels and resorts are required to disclose such fees, which include resort fees, up front to customers. While this has helped create transparency around resort fees, it hasn’t eliminated them.</p>
+                            <p style={{ fontFamily: "'Lobster Two', sans-serif" }} className='text-sm font-normal text-black'>However, travelers who are fed up with resort fees got a recent win. In 2024, the <span className='text-blue-500 underline'>Federal Trade Commission</span> announced rules around what it describes as “junk fees” – and, more specifically, that hotels and resorts are required to disclose such fees, which include resort fees, up front to customers. While this has helped create transparency around resort fees, it hasn’t eliminated them.</p>
                         </div>
                     </div>
 
@@ -238,7 +238,7 @@ const BlogDetails = () => {
                         <p className='text-sm font-normal text-black'>Using travel reward programs or hotel loyalty programs is another strategic way to book a hotel without paying resort fees. For example, Hyatt waives resort fees when guests book with World of Hyatt loyalty points, as does Hilton for its Hilton Honors members.</p>
                         <p className='text-sm font-normal text-black'>Check your favorite hotel’s loyalty program to avoid resort fees on your next trip, which can offer significant savings for your repeat business.</p>
                         <Link to={"/"}>
-                            <button className='py-2 cursor-pointer px-6 rounded-sm font-semibold bg-orange-600 text-sm text-white'>Find stays and hotels</button>
+                            <button className='py-2 cursor-pointer px-6 rounded-sm font-semibold bg-[var(--primary-color)] text-sm text-white'>Find stays and hotels</button>
                         </Link>
                     </div>
 
@@ -285,7 +285,7 @@ const BlogDetails = () => {
                             <p className='text-sm font-normal text-black'>Most hotels will charge a fee or percentage of your booking if you cancel your reservation within a certain amount of time prior to your arrival date. Some hotels may even charge a fee if you change your reservation after it has been made, so it's important to read the fine print.</p>
                         </div>
                         <div className='flex flex-col items-start py-4 px-4 my-4 rounded-md bg-[#f5bfc3] w-full'>
-                            <p className='text-sm font-normal text-black'>However, it’s a cinch to search on <Link className='text-blue-500 underline'>KAYAK for hotels</Link> that offer free cancellation. After selecting your preferred destination and dates, simply choose “Free cancellation” from the “Inclusions” filter in the dropdown menu.
+                            <p style={{ fontFamily: "'Lobster Two', sans-serif" }} className='text-sm font-normal text-black'>However, it’s a cinch to search on <Link className='text-blue-500 underline'>KAYAK for hotels</Link> that offer free cancellation. After selecting your preferred destination and dates, simply choose “Free cancellation” from the “Inclusions” filter in the dropdown menu.
                             </p>
                         </div>
                     </div>
@@ -381,7 +381,7 @@ const BlogDetails = () => {
                         <label className='text-sm font-normal'>Email address</label>
                         <div className='flex items-center w-full gap-2 h-10'>
                             <input type="email" required className='border border-gray-200 rounded-md h-full w-full py-2 px-4' />
-                            <button className='bg-gray-900 whitespace-nowrap text-white py-2 px-5 rounded-md h-full  text-sm'>Sign Up</button>
+                            <button className='bg-[var(--primary-color)] whitespace-nowrap text-white py-2 px-5 rounded-md h-full  text-sm'>Sign Up</button>
                         </div>
 
                     </div>

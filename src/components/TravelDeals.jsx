@@ -1,247 +1,143 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Container from "./Container";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { IoStar } from "react-icons/io5";
-import hotel1 from "../assets/hotel1.jpg"
-import hotel2 from "../assets/hotel2.jpg"
-import hotel3 from "../assets/hotel3.jpg"
-import hotel4 from "../assets/hotel4.jpg"
-import hotel5 from "../assets/hotel5.jpg"
-import Skeleton from "react-loading-skeleton";
+import city1 from "../assets/london.webp";
+import city2 from "../assets/newYork.jpg";
+import city3 from "../assets/rome.webp";
+import city4 from "../assets/amsterdam.webp";
+import city5 from "../assets/paris.webp";
+
+const travelDealsData = [
+    {
+        id: 1,
+        name: "London",
+        avgPrice: "$233 Avg.",
+        image: city1,
+        dates: "Thu, 26 Feb - Thu, 5 Mar",
+    },
+    {
+        id: 2,
+        name: "New York",
+        avgPrice: "$250 Avg.",
+        image: city2,
+        dates: "Thu, 26 Feb - Thu, 5 Mar",
+    },
+    {
+        id: 3,
+        name: "Rome",
+        avgPrice: "$195 Avg.",
+        image: city3,
+        dates: "Thu, 26 Feb - Thu, 5 Mar",
+    },
+    {
+        id: 4,
+        name: "Amsterdam",
+        avgPrice: "$220 Avg.",
+        image: city4,
+        dates: "Thu, 26 Feb - Thu, 5 Mar",
+    },
+    {
+        id: 5,
+        name: "Paris",
+        avgPrice: "$220 Avg.",
+        image: city5,
+        dates: "Thu, 26 Feb - Thu, 5 Mar",
+    },
+];
 
 const TravelDeals = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [slidesToShow, setSlidesToShow] = useState(4);
-    const [loading, setLoading] = useState(true);
-    const hotelDeals = [
-        {
-            id: 1,
-            image: hotel1,
-            name: "Dubai",
-            countryName: "United Arab Emirates",
-            fromText: "From",
-            stayPrice: "Rs 5,867",
-            perNight: "a night",
-            rating: 4.8,
-            reviews: "2,340 reviews",
-        },
-        {
-            id: 2,
-            image: hotel2,
-            name: "Istanbul",
-            countryName: "Turkey",
-            fromText: "From",
-            stayPrice: "Rs 4,120",
-            perNight: "a night",
-            rating: 4.6,
-            reviews: "1,890 reviews",
-        },
-        {
-            id: 3,
-            image: hotel3,
-            name: "Paris",
-            countryName: "France",
-            fromText: "From",
-            stayPrice: "Rs 9,450",
-            perNight: "a night",
-            rating: 4.9,
-            reviews: "3,120 reviews",
-        },
-        {
-            id: 4,
-            image: hotel4,
-            name: "Kuala Lumpur",
-            countryName: "Malaysia",
-            fromText: "From",
-            stayPrice: "Rs 3,980",
-            perNight: "a night",
-            rating: 4.5,
-            reviews: "1,420 reviews",
-        },
-        {
-            id: 5,
-            image: hotel5,
-            name: "Riyadh",
-            countryName: "Saudi Arabia",
-            fromText: "From",
-            stayPrice: "Rs 6,300",
-            perNight: "a night",
-            rating: 4.7,
-            reviews: "980 reviews",
-        },
-    ];
-    useEffect(() => {
-        const updateSlides = () => {
-            if (window.innerWidth < 550) setSlidesToShow(1);
-            else if (window.innerWidth < 800) setSlidesToShow(2);
-            else if (window.innerWidth < 1200) setSlidesToShow(2);
-            else setSlidesToShow(5);
-        };
-        updateSlides();
-        window.addEventListener("resize", updateSlides);
-        return () => window.removeEventListener("resize", updateSlides);
-    }, []);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000);
-    }, [])
-
-
-    const nextSlide = () => {
-        if (currentSlide < hotelDeals.length - slidesToShow) {
-            setCurrentSlide(currentSlide + 1);
-        }
-    };
-    const prevSlide = () => {
-        if (currentSlide > 0) {
-            setCurrentSlide(currentSlide - 1);
-        }
-    };
     return (
-        <section className="w-full py-5">
-            <Container className="flex flex-col w-full items-end justify-end gap-5">
-                <div className="flex w-full items-center justify-between">
-                    <div className="flex flex-col gap-2 max-w-2xl">
-                        <h1 style={{ fontFamily: "'Roboto', sans-serif" }} className="text-2xl md:text-3xl font-bold text-gray-900">
-                            Travel deals under $230
-                        </h1>
-
-                        <p className="text-sm md:text-base text-gray-600">
-                            The key to a great city break is a perfectly placed stay.
-                        </p>
-                    </div>
-
-                    <button className="text-sm hidden lg:flex font-semibold items-center gap-1 hover:bg-[#E6EBEF] duration-300 cursor-pointer px-6 py-2 rounded-md">
-                        Explore More <IoIosArrowForward />
-                    </button>
+        <section className="w-full pt-8 pb-14">
+            <Container className="flex flex-col gap-10">
+                <div className="flex flex-col gap-3 max-w-3xl">
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+                        Popular Destinations
+                    </h1>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                        Explore trending cities around the world and discover the best city
+                        deals for your upcoming stay. Compare prices and book with confidence.
+                    </p>
                 </div>
 
-                <div className="overflow-hidden w-full">
-                    <div
-                        className="flex transition-transform duration-500"
-                        style={{
-                            transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
-                        }}
-                    >
-                        {(loading ? Array(slidesToShow).fill(null) : hotelDeals).map((item, index) => {
-                            return (<div
-                                key={item?.id || index}
-                                className="pr-2 flex-shrink-0"
-                                style={{ width: `${100 / slidesToShow}%` }}
+                <div className="flex flex-col gap-2 w-full">
+                    <div className="grid grid-cols-10 gap-2 w-full">
+                        <div className="relative group max-[450px]:col-span-10 col-span-4 overflow-hidden rounded-sm cursor-pointer">
+                            <img
+                                src={travelDealsData[0].image}
+                                alt={travelDealsData[0].name}
+                                className="w-full max-[480px]:h-[280px] h-[320px] object-cover group-hover:scale-105 transition duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                            <div className="absolute bottom-4 px-4 text-[var(--accent-color)] flex flex-col w-full">
+                                <h2 className="text-2xl font-bold">
+                                    {travelDealsData[0].name}
+                                </h2>
+                                <p className="text-xs opacity-90">
+                                    {travelDealsData[0].dates}
+                                </p>
+                                <p className="text-lg font-semibold">
+                                    {travelDealsData[0].avgPrice}
+                                </p>
+                                <button className="mt-2 bg-[var(--accent-color)] w-full text-black text-sm font-semibold px-4 py-2 rounded-md hover:bg-gray-200 transition">
+                                    Find Hotels
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="relative group max-[450px]:col-span-10 col-span-6 overflow-hidden rounded-sm cursor-pointer">
+                            <img
+                                src={travelDealsData[1].image}
+                                alt={travelDealsData[1].name}
+                                className="w-full max-[480px]:h-[280px] h-[320px] object-cover group-hover:scale-105 transition duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                            <div className="absolute bottom-4 w-full px-4 text-[var(--accent-color)]">
+                                <h2 className="text-2xl font-bold">
+                                    {travelDealsData[1].name}
+                                </h2>
+                                <p className="text-xs opacity-90">
+                                    {travelDealsData[1].dates}
+                                </p>
+                                <p className="text-lg font-semibold">
+                                    {travelDealsData[1].avgPrice}
+                                </p>
+
+                                <button className="mt-2 bg-[var(--accent-color)] w-full text-black text-sm font-semibold px-4 py-2 rounded-md hover:bg-gray-200 transition">
+                                    Find Hotels
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid max-[480px]:grid-cols-2 grid-cols-3 gap-2 w-full">
+                        {travelDealsData.slice(2).map((city) => (
+                            <div
+                                key={city.id}
+                                className="relative group overflow-hidden rounded-sm cursor-pointer"
                             >
-                                <div className="cursor-pointer rounded-xl overflow-hidden duration-300">
-                                    {loading ? (
-                                        <Skeleton height={230} />
-                                    ) : (
-                                        <img
-                                            src={item.image}
-                                            alt={item.name}
-                                            className="w-full h-48 rounded-xl object-cover"
-                                        />
-                                    )}
+                                <img
+                                    src={city.image}
+                                    alt={city.name}
+                                    className="w-full h-[240px] object-cover group-hover:scale-105 transition duration-500"
+                                />
 
-                                    <div className="py-2">
-                                        <h2 className="text-lg font-semibold">
-                                            {loading ? <Skeleton width={120} /> : item.name}
-                                        </h2>
-                                        <p className="text-sm text-gray-500">
-                                            {loading ? <Skeleton width={160} /> : item.countryName}
-                                        </p>
+                                <div className="absolute inset-0 bg-black/60"></div>
 
-                                        <div className="flex items-center gap-1">
-                                            {loading ? (
-                                                <Skeleton width={180} />
-                                            ) : (
-                                                <>
-                                                    <span className="text-sm text-gray-500">
-                                                        {item.fromText}
-                                                    </span>
-                                                    <span className="text-lg font-semibold">
-                                                        {item.stayPrice}
-                                                    </span>
-                                                    <span className="text-sm text-gray-500">
-                                                        {item.perNight}
-                                                    </span>
-                                                </>
-                                            )}
-                                        </div>
-
-                                        <p className="text-sm flex items-center gap-2 text-gray-600 mt-1">
-                                            {loading ? (
-                                                <Skeleton width={140} />
-                                            ) : (
-                                                <>
-                                                    <span className="text-yellow-600"><IoStar /></span> {item.rating} · {item.reviews}
-                                                </>
-                                            )}
-                                        </p>
-                                    </div>
+                                <div className="absolute bottom-4 px-4 w-full text-[var(--accent-color)]">
+                                    <h3 className="font-semibold text-lg">{city.name}</h3>
+                                    <p className="text-xs opacity-90">{city.dates}</p>
+                                    <p className="text-sm font-medium">{city.avgPrice}</p>
+                                    <button className="mt-2 bg-[var(--accent-color)] w-full text-black text-sm font-semibold px-4 py-2 rounded-md hover:bg-gray-200 transition">
+                                        Find Hotels
+                                    </button>
                                 </div>
                             </div>
-                            )
-                        })}
+                        ))}
                     </div>
                 </div>
 
-                <div className="lg:hidden flex items-center w-full justify-between">
-                    <button className="text-sm lg:hidden flex font-semibold items-center gap-1 hover:bg-[#E6EBEF] duration-300 cursor-pointer px-6 py-2 rounded-md">
-                        Explore More <IoIosArrowForward />
-                    </button>
-
-                    <div className="flex gap-2 ">
-                        <button
-                            onClick={prevSlide}
-                            disabled={currentSlide === 0}
-                            className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide === 0
-                                ? "text-gray-300 cursor-not-allowed"
-                                : "text-black hover:bg-gray-100 cursor-pointer"
-                                }`}
-                        >
-                            <IoIosArrowBack />
-                        </button>
-
-                        <button
-                            onClick={nextSlide}
-                            disabled={currentSlide >= hotelDeals.length - slidesToShow}
-                            className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide >= hotelDeals.length - slidesToShow
-                                ? "text-gray-300 cursor-not-allowed"
-                                : "text-black hover:bg-gray-100 cursor-pointer"
-                                }`}
-                        >
-                            <IoIosArrowForward />
-                        </button>
-                    </div>
-                </div>
-
-                {hotelDeals.length > slidesToShow && (
-                    <div className="lg:flex hidden items-end justify-end gap-2 w-full ">
-                        <button
-                            onClick={prevSlide}
-                            disabled={currentSlide === 0}
-                            className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide === 0
-                                ? "text-gray-300 cursor-not-allowed"
-                                : "text-black hover:bg-gray-100 cursor-pointer"
-                                }`}
-                        >
-                            <IoIosArrowBack />
-                        </button>
-
-                        <button
-                            onClick={nextSlide}
-                            disabled={currentSlide >= hotelDeals.length - slidesToShow}
-                            className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide >= hotelDeals.length - slidesToShow
-                                ? "text-gray-300 cursor-not-allowed"
-                                : "text-black hover:bg-gray-100 cursor-pointer"
-                                }`}
-                        >
-                            <IoIosArrowForward />
-                        </button>
-                    </div>
-                )}
             </Container>
-        </section >
+        </section>
     );
 };
 

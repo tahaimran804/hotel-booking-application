@@ -115,7 +115,7 @@ const SearchRoomAndRates = () => {
                     {loading ? (
                         <Skeleton height={38} />
                     ) : (
-                        <button className="w-full py-2 bg-orange-600 text-white rounded-lg text-sm">
+                        <button className="w-full py-2 bg-[var(--primary-color)] text-white rounded-lg text-sm">
                             Search
                         </button>
                     )}
