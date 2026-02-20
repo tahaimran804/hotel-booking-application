@@ -10,13 +10,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import App from './App.jsx'
 import ToggleProvider from './Context/ToggleMenu.jsx'
 import LoginFromProvider from './Context/OpenLoginFrom.jsx';
+// import HotelDataProvider from './Context/HotelDataContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <ToggleProvider>
-      <LoginFromProvider>
-        <App />
-      </LoginFromProvider>
-    </ToggleProvider>
-  </StrictMode>,
+  <ToggleProvider>
+    <LoginFromProvider>
+      {/* <HotelDataProvider> */}
+      <App />
+      {/* </HotelDataProvider> */}
+    </LoginFromProvider>
+  </ToggleProvider>
 )

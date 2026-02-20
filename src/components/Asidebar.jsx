@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { GiCommercialAirplane, GiCruiser, GiModernCity } from "react-icons/gi";
 import { FaHotel, FaCarSide } from "react-icons/fa";
 import { MdTravelExplore } from "react-icons/md";
-import { IoBedOutline } from "react-icons/io5";
+import { IoBedOutline, IoCloseOutline } from "react-icons/io5";
 import { SiGooglegemini } from "react-icons/si";
 import { LuShip } from "react-icons/lu";
 import { FaHeart } from "react-icons/fa";
@@ -140,18 +140,33 @@ const Asidebar = () => {
     ];
 
 
+    useEffect(() => {
+        if (openMenuAsideBar) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [openMenuAsideBar]);
+
+
     return (
         <>
-
             {openMenuAsideBar && (
                 <div
                     onClick={() => setOpenMenuAsideBar(false)}
-                    className="fixed inset-0 bg-black/40 z-40"
+                    className="fixed h-screen overflow-hidden inset-0 bg-black/40 z-40"
                 />
             )}
             <div className={`w-full sm:w-64  border border-gray-100
         ${openMenuAsideBar ? "translate-x-0 z-50 duration-500" : "-translate-x-full duration-500"}
-        h-screen hover:overflow-auto pb-24 duration-500 bg-white fixed top-18 sm:top-20 left-0 border-r border-gray-100`}>
+        h-screen hover:overflow-auto pb-24 duration-500 bg-white fixed top-0 left-0 border-r border-gray-100`}>
+
+                <span className="absolute top-2 text-xl right-2 sm:hidden block cursor-pointer text-black"><IoCloseOutline onClick={() => setOpenMenuAsideBar(false)} /></span>
+
+
                 <div className='border-b border-gray-200 flex px-2 py-4 flex-col gap-2 items-start w-full'>
                     {navData.map((items) => {
                         const isActive = location.pathname === items.url;

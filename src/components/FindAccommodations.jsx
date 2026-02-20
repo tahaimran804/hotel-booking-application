@@ -15,7 +15,6 @@ const FindAccommodations = () => {
             id: 1,
             countryData: [
                 { id: 1, country: "United States Hotels", url: "#" },
-                { id: 2, country: "Iceland Hotels", url: "#" },
             ],
             CitesData: [
                 {
@@ -115,10 +114,7 @@ const FindAccommodations = () => {
         {
             id: 2,
             countryData: [
-                { id: 3, country: "England Hotels", url: "#" },
-                { id: 4, country: "Wales Hotels", url: "#" },
-                { id: 5, country: "Scotland Hotels", url: "#" },
-                { id: 6, country: "Northern Ireland Hotels", url: "#" },
+                { id: 3, country: "United kingdom Hotels", url: "#" },
             ],
 
             CitesData: [

@@ -3,8 +3,8 @@ import Home from "./pages/Home"
 import Hotels from "./pages/Hotel_List_and_details/Hotels"
 import Layout from "./components/Layout"
 import HotelDetails from "./pages/Hotel_List_and_details/HotelDetails"
-import UserProfile from "./pages/UserProfile"
-import Favorite_hotels from "./pages/Favorite_hotels"
+import UserProfile from "./pages/User/UserProfile"
+import Favorite_hotels from "./pages/User/Favorite_hotels"
 import HelpAndFaq from "./pages/HelpAndFaq"
 import Blog from "./pages/Articlepages/Blog"
 import BlogDetails from "./pages/Articlepages/BlogDetails"
@@ -24,6 +24,9 @@ import ManagePrivacyContentPolicy from "./admin/Pages/ManagePrivacyContentPolicy
 import TrackingIDs from "./admin/Pages/TrackingIDs"
 import ScrollTop from "./components/ScrollTop"
 import Faq from "./pages/Faq"
+import UserLayout from "./components/UserLayout"
+import Recentlyviewed from "./pages/User/Recentlyviewed"
+import Search_Preferences from "./pages/User/Search_Preferences"
 
 const App = () => {
   return (
@@ -33,15 +36,21 @@ const App = () => {
         <Route element={<Layout />}>
           <Route element={<Home />} path="/" />
           <Route element={<Hotels />} path="/hotels" />
-          <Route element={<HotelDetails />} path="/hoteldetails" />
-          <Route element={<UserProfile />} path="/profile" />
-          <Route element={<Favorite_hotels />} path="/favorite-hotels" />
+          <Route element={<HotelDetails />} path="/hotel-details" />
           <Route element={<About />} path="/about-us" />
           <Route element={<HelpAndFaq />} path="/help-faq" />
           <Route element={<Faq />} path="faqDetails" />
           <Route element={<Blog />} path="/blog" />
           <Route element={<BlogDetails />} path="/blog-details" />
           <Route element={<Error />} path="*" />
+          <Route element={<UserLayout />}>
+            <Route element={<UserProfile />} path="/user-profile" />
+            <Route element={<Favorite_hotels />} path="/profile/favorite-hotels" />
+            <Route element={<Recentlyviewed />} path="/profile/recently-viewed" />
+            <Route element={<Search_Preferences />} path="/profile/search-preferences" />
+          </Route>
+
+
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route element={<AdminLayout />}>
@@ -56,8 +65,6 @@ const App = () => {
           <Route path="/manage-privacy-content-policy" element={<ManagePrivacyContentPolicy />} />
           <Route path="/manage-terms-content-conditions" element={<ManageTermsContentConditions />} />
           <Route path="/manage-faq-content" element={<ManageFAQContent />} />
-
-
         </Route>
       </Routes>
     </BrowserRouter>

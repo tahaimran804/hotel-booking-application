@@ -35,8 +35,18 @@ import {
 
 import { BiFirstAid } from "react-icons/bi";
 import { GiTennisCourt } from "react-icons/gi";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const Amenities = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
+    }, [])
+
 
     const amenitiesData = [
 
@@ -159,86 +169,87 @@ const Amenities = () => {
             </h1>
 
             <div className='grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 items-start lg:items-center gap-2 w-full'>
-                {
-                    [
-                        {
-                            id: 1,
-                            name: "Wi-Fi",
-                            icon: <IoWifi />
-                        },
-                        {
-                            id: 2,
-                            name: "Parking",
-                            icon: <CiParking1 />
-                        },
-                        {
-                            id: 3,
-                            name: "Air conditioning",
-                            icon: <TbAirConditioning />
-                        },
-                        {
-                            id: 4,
-                            name: "Airport shuttle",
-                            icon: <MdOutlineAirportShuttle />
-                        },
-                        {
-                            id: 5,
-                            name: "Pool",
-                            icon: <MdPool />
-                        },
-                        {
-                            id: 6,
-                            name: "Fitness centre",
-                            icon: <MdFitnessCenter />
-                        },
-                    ].map((item) => {
-                        return (
-                            <div key={item.id} className='rounded-md flex items-center justify-center w-full h-32 bg-gray-50 border border-gray-100'>
-                                <div className='flex flex-col items-center gap-1'>
-                                    <span className='text-xl sm:text-3xl font-bold text-black'>{item.icon}</span>
-                                    <h1 className='text-sm sm:text-lg text-center  text-black'>{item.name}</h1>
+                {[
+                    { id: 1, name: "Wi-Fi", icon: <IoWifi /> },
+                    { id: 2, name: "Parking", icon: <CiParking1 /> },
+                    { id: 3, name: "Air conditioning", icon: <TbAirConditioning /> },
+                    { id: 4, name: "Airport shuttle", icon: <MdOutlineAirportShuttle /> },
+                    { id: 5, name: "Pool", icon: <MdPool /> },
+                    { id: 6, name: "Fitness centre", icon: <MdFitnessCenter /> },
+                ].map((item, index) => {
+                    return (
+                        <div
+                            key={item.id}
+                            className={`rounded-md flex items-center justify-center w-full h-32 bg-gray-50 border border-gray-100 transition-all duration-500 ${loading ? "animate-pulse" : "opacity-100 scale-100"
+                                }`}
+                            style={{
+                                animationDelay: `${index * 100}ms`
+                            }}
+                        >
+                            {loading ? (
+                                <div className='flex flex-col items-center gap-2 w-full px-4'>
+                                    <div className='w-8 h-8 bg-gray-300 rounded-full'></div>
+                                    <div className='w-20 h-3 bg-gray-300 rounded'></div>
                                 </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-
-            {/* Categories */}
-            <div className="flex flex-col gap-10 w-full">
-
-                {amenitiesData.map((category, index) => (
-                    <div key={index} className="flex flex-col gap-4">
-
-                        <h2 className="text-xl font-semibold">
-                            {category.title}
-                        </h2>
-
-                        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
-
-                            {category.items.map((item, i) => (
-                                <div
-                                    key={i}
-                                    className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-100 rounded-lg"
-                                >
-                                    <span className="text-2xl">
+                            ) : (
+                                <div className='flex flex-col items-center gap-1 transition-all duration-500'>
+                                    <span className='text-xl sm:text-3xl font-bold text-black'>
                                         {item.icon}
                                     </span>
-
-                                    <p className="text-sm font-medium">
+                                    <h1 className='text-sm sm:text-lg text-center text-black'>
                                         {item.name}
-                                    </p>
+                                    </h1>
                                 </div>
-                            ))}
-
+                            )}
                         </div>
-
-                    </div>
-                ))}
-
+                    );
+                })}
             </div>
 
-        </div>
+
+
+
+            <div className="flex flex-col gap-10 w-full" >
+                {
+                    amenitiesData.map((category, index) => (
+                        <div key={index} className="flex flex-col gap-4">
+
+                            <h2 className="text-xl font-semibold">
+                                {category.title}
+                            </h2>
+
+                            <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
+
+                                {category.items.map((item, i) => (
+                                    <div
+                                        key={i}
+                                        className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-100 rounded-lg"
+                                    >
+                                        {loading ? (
+                                            <Skeleton width={20} height={20} />
+                                        ) : (
+                                            <>
+                                                <span className="text-2xl">
+                                                    {item.icon}
+                                                </span>
+
+                                                <p className="text-sm font-medium">
+                                                    {item.name}
+                                                </p>
+                                            </>
+                                        )}
+                                    </div>
+                                ))}
+
+                            </div>
+
+                        </div>
+                    ))
+                }
+
+            </div >
+
+        </div >
     );
 };
 

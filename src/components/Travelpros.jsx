@@ -49,7 +49,7 @@ const Travelpros = () => {
                                 className="bg-white shadow-lg w-full transform transition-transform cursor-pointer hover:scale-105 rounded-4xl overflow-hidden hover:shadow-2xl duration-300 py-5 border border-gray-100 px-4 flex flex-col gap-5 items-start h-52 sm:h-80 justify-between"
                             >
                                 <div className="flex items-start flex-col gap-1">
-                                    <h3 className="font-semibold max-[500px]:text-sm text-xl">
+                                    <h3 style={{ fontFamily: "'Roboto', sans-serif" }} className="font-semibold max-[500px]:text-sm text-xl">
                                         {loading ? (
                                             <Skeleton width={140} />
                                         ) : (
@@ -63,7 +63,7 @@ const Travelpros = () => {
                                             </>
                                         )}
                                     </h3>
-                                    <p className="max-[500px]:text-xs text-sm text-gray-600">
+                                    <p style={{ fontFamily: "'Roboto', sans-serif" }} className="max-[500px]:text-xs text-sm text-gray-600">
                                         {loading ? <Skeleton count={2} /> : item.description}
                                     </p>
                                 </div>

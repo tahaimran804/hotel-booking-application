@@ -75,7 +75,7 @@ const TravelDeals = () => {
             if (window.innerWidth < 550) setSlidesToShow(1);
             else if (window.innerWidth < 800) setSlidesToShow(2);
             else if (window.innerWidth < 1200) setSlidesToShow(2);
-            else setSlidesToShow(4);
+            else setSlidesToShow(5);
         };
         updateSlides();
         window.addEventListener("resize", updateSlides);
@@ -100,7 +100,7 @@ const TravelDeals = () => {
         }
     };
     return (
-        <section className="w-full py-10 bg-gray-50">
+        <section className="w-full py-5">
             <Container className="flex flex-col w-full items-end justify-end gap-5">
                 <div className="flex w-full items-center justify-between">
                     <div className="flex flex-col gap-2 max-w-2xl">
@@ -120,7 +120,7 @@ const TravelDeals = () => {
 
                 <div className="overflow-hidden w-full">
                     <div
-                        className="flex py-5 transition-transform duration-500"
+                        className="flex transition-transform duration-500"
                         style={{
                             transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
                         }}
@@ -128,21 +128,21 @@ const TravelDeals = () => {
                         {(loading ? Array(slidesToShow).fill(null) : hotelDeals).map((item, index) => {
                             return (<div
                                 key={item?.id || index}
-                                className="px-2 flex-shrink-0"
+                                className="pr-2 flex-shrink-0"
                                 style={{ width: `${100 / slidesToShow}%` }}
                             >
-                                <div className="bg-white cursor-pointer rounded-xl overflow-hidden shadow-sm hover:shadow-md duration-300">
+                                <div className="cursor-pointer rounded-xl overflow-hidden duration-300">
                                     {loading ? (
                                         <Skeleton height={230} />
                                     ) : (
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="w-full h-56 object-cover"
+                                            className="w-full h-48 rounded-xl object-cover"
                                         />
                                     )}
 
-                                    <div className="p-4">
+                                    <div className="py-2">
                                         <h2 className="text-lg font-semibold">
                                             {loading ? <Skeleton width={120} /> : item.name}
                                         </h2>
@@ -150,14 +150,14 @@ const TravelDeals = () => {
                                             {loading ? <Skeleton width={160} /> : item.countryName}
                                         </p>
 
-                                        <div className="mt-2">
+                                        <div className="flex items-center gap-1">
                                             {loading ? (
                                                 <Skeleton width={180} />
                                             ) : (
                                                 <>
                                                     <span className="text-sm text-gray-500">
                                                         {item.fromText}
-                                                    </span>{" "}
+                                                    </span>
                                                     <span className="text-lg font-semibold">
                                                         {item.stayPrice}
                                                     </span>
@@ -178,7 +178,6 @@ const TravelDeals = () => {
                                             )}
                                         </p>
                                     </div>
-
                                 </div>
                             </div>
                             )
@@ -216,29 +215,31 @@ const TravelDeals = () => {
                     </div>
                 </div>
 
-                <div className="lg:flex hidden items-end justify-end gap-2 w-full ">
-                    <button
-                        onClick={prevSlide}
-                        disabled={currentSlide === 0}
-                        className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide === 0
-                            ? "text-gray-300 cursor-not-allowed"
-                            : "text-black hover:bg-gray-100 cursor-pointer"
-                            }`}
-                    >
-                        <IoIosArrowBack />
-                    </button>
+                {hotelDeals.length > slidesToShow && (
+                    <div className="lg:flex hidden items-end justify-end gap-2 w-full ">
+                        <button
+                            onClick={prevSlide}
+                            disabled={currentSlide === 0}
+                            className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide === 0
+                                ? "text-gray-300 cursor-not-allowed"
+                                : "text-black hover:bg-gray-100 cursor-pointer"
+                                }`}
+                        >
+                            <IoIosArrowBack />
+                        </button>
 
-                    <button
-                        onClick={nextSlide}
-                        disabled={currentSlide >= hotelDeals.length - slidesToShow}
-                        className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide >= hotelDeals.length - slidesToShow
-                            ? "text-gray-300 cursor-not-allowed"
-                            : "text-black hover:bg-gray-100 cursor-pointer"
-                            }`}
-                    >
-                        <IoIosArrowForward />
-                    </button>
-                </div>
+                        <button
+                            onClick={nextSlide}
+                            disabled={currentSlide >= hotelDeals.length - slidesToShow}
+                            className={`w-9 h-9 rounded-full flex items-center justify-center border border-gray-300 ${currentSlide >= hotelDeals.length - slidesToShow
+                                ? "text-gray-300 cursor-not-allowed"
+                                : "text-black hover:bg-gray-100 cursor-pointer"
+                                }`}
+                        >
+                            <IoIosArrowForward />
+                        </button>
+                    </div>
+                )}
             </Container>
         </section >
     );

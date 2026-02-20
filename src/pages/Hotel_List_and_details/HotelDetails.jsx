@@ -31,6 +31,7 @@ import Amenities from '../../components/Amenities';
 import ScrollToTop from '../../components/ScrollToTop';
 import CheckIn from '../../components/CheckIn';
 import SearchRoomAndRates from '../../components/SearchRoomAndRate';
+import Skeleton from 'react-loading-skeleton';
 
 
 const HotelDetails = () => {
@@ -40,6 +41,13 @@ const HotelDetails = () => {
     const [isFixed, setIsFixed] = useState(false);
     const [cashToggle, setCashToggle] = useState(false);
     const sectionRef = useRef(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }, [])
 
 
     useEffect(() => {
@@ -95,56 +103,59 @@ const HotelDetails = () => {
         HotelImage4,
         HotelImage5,
     ];
-
-
-
-
     return (
         <>
             <ScrollToTop />
-            <section
-                id="overView"
-                className="grid grid-cols-4 md:grid-cols-2 md:grid-rows-3 gap-2 h-full md:h-[400px]"
-            >
-                <div className="col-span-4 md:col-span-1 md:row-span-2">
-                    <img
-                        src={images[0]}
-                        alt="hotel"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+            <Container>
+                {loading ? (
+                    <Skeleton width={'100%'} height={400} />
+                ) : (
+                    <section
+                        id="overView"
+                        className="grid grid-cols-4 md:grid-cols-2 md:grid-rows-3 gap-2 h-full md:h-[400px]"
+                    >
+                        <div className="col-span-4 md:col-span-1 md:row-span-2">
+                            <img
+                                src={images[0]}
+                                alt="hotel"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
 
-                <div>
-                    <img
-                        src={images[1]}
-                        alt="hotel"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+                        <div>
+                            <img
+                                src={images[1]}
+                                alt="hotel"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
 
-                <div>
-                    <img
-                        src={images[2]}
-                        alt="hotel"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+                        <div>
+                            <img
+                                src={images[2]}
+                                alt="hotel"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
 
-                <div>
-                    <img
-                        src={images[3]}
-                        alt="hotel"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-                <div>
-                    <img
-                        src={images[4]}
-                        alt="hotel"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-            </section>
+                        <div>
+                            <img
+                                src={images[3]}
+                                alt="hotel"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div>
+                            <img
+                                src={images[4]}
+                                alt="hotel"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </section>
+                )}
+            </Container>
+
 
             <Container className='py-10'>
                 <div className='flex flex-col w-full items-start gap-4'>
@@ -200,8 +211,8 @@ const HotelDetails = () => {
 
                     <div
                         ref={sectionRef}
-                        className={`flex flex-col-reverse md:flex-row h-auto md:h-20 w-full items-end border-b border-gray-200 justify-between gap-0 md:gap-2 z-40
-      ${isFixed ? "fixed top-0 left-0 px-4 bg-white" : "bg-white "}`}
+                        className={`flex flex-col-reverse md:flex-row h-auto md:h-20 w-full items-end border-b border-gray-200 justify-between gap-0 md:gap-2
+      ${isFixed ? "fixed top-0 left-0 px-4 bg-white z-40" : "z-0 bg-white "}`}
                     >
 
                         <div className='flex overflow-x-scroll no_scrollBar items-start md:w-auto justify-start w-full gap-6'>
@@ -259,40 +270,92 @@ const HotelDetails = () => {
                     </div>
 
                     <div className='w-full bg-white flex flex-col gap-2 md:gap-5 items-center rounded-md border py-6 border-gray-300 px-5'>
-                        <div className='flex cursor-pointer items-center gap-2 md:gap-5 justify-between w-full'>
-                            <h1 style={{
-                                fontFamily: "'Roboto', sans-serif"
-                            }} className='text-lg md:text-xl font-bold'>You’ve found a gem! Prices for your hotel are currently <span className='text-orange-600'>lower</span> than usual</h1>
-                        </div>
-                        <div style={{
-                            fontFamily: "'Roboto', sans-serif"
-                        }} className='flex items-start flex-col gap-10 md:flex-row md:items-center justify-between w-full relative'>
-                            <p className='text-sm w-full md:w-140 inline-block items-center font-normal'>The lowest price for Karachi Family Guest House on your dates is Rs 2,987 a night. Usually rooms for this hotel in February range from Rs 3,045 to Rs 3,045 a night<span onClick={() => setShowinfo((prev) => !prev)} className='inline-block text-lg  cursor-pointer ml-2`'><IoMdInformationCircle /></span></p>
+                        {loading ? (
+                            <>
+                                <Skeleton width={'80%'} height={20} />
+                                <div className='flex items-start flex-col gap-10 md:flex-row md:items-center justify-between w-full'>
+                                    <div className='w-full md:w-140 flex flex-col gap-2'>
+                                        <Skeleton width={'100%'} height={15} />
+                                        <Skeleton width={'90%'} height={15} />
+                                        <Skeleton width={'70%'} height={15} />
+                                    </div>
 
-                            {showinfo && (
-                                <div className='w-92 overflow-y-scroll no_scrollBar h-32 py-4 px-4 rounded-md bg-white flex flex-col items-start gap-2 border top-10 left-50 border-gray-100 absolute'>
-                                    <p className='text-sm w-full font-normal'>We’ve tracked prices over a 12-month period for similar trips (same month, hotel, number of guests and rooms).</p>
-                                    <button onClick={() => setShowinfo((prev) => !prev)} className='cursor-pointer border-b text-sm border-gray-500'>Close</button>
+                                    <div className='grid grid-cols-12 w-56 gap-0.5'>
+                                        <Skeleton height={10} className='col-span-3 rounded-l-2xl' />
+                                        <Skeleton height={10} className='col-span-6' />
+                                        <Skeleton height={10} className='col-span-3 rounded-r-2xl' />
+                                    </div>
                                 </div>
-                            )}
+                            </>
+                        ) : (
+                            <>
+                                <div className='flex cursor-pointer items-center gap-2 md:gap-5 justify-between w-full'>
+                                    <h1
+                                        style={{ fontFamily: "'Roboto', sans-serif" }}
+                                        className='text-lg md:text-xl font-bold'
+                                    >
+                                        You’ve found a gem! Prices for your hotel are currently
+                                        <span className='text-orange-600'> lower </span>
+                                        than usual
+                                    </h1>
+                                </div>
 
-                            <div className='grid grid-cols-12 w-56 items-center gap-0.5'>
-                                <span className='bg-[#0c838a] col-span-3 w-full h-2.5 rounded-l-2xl relative'>
-                                    <span className='absolute -top-8 -left-2 bg-[#0c838a] px-2 py-1 rounded-sm text-white inline-block text-xs whitespace-nowrap font-bold'>Rs 9,083</span>
-                                    <span className='absolute top-4 left-0 inline-block text-xs whitespace-nowrap'>Rs 10,238</span>
-                                </span>
-                                <span className='bg-[#05203C] w-full col-span-6 h-2.5'></span>
-                                <span className='bg-[#E70866] col-span-3 w-full h-2.5 relative rounded-r-2xl'>
-                                    <span className='absolute top-4 right-0 inline-block text-xs whitespace-nowrap'>Rs 15,167</span>
-                                </span>
-                            </div>
-                        </div>
+                                <div
+                                    style={{ fontFamily: "'Roboto', sans-serif" }}
+                                    className='flex items-start flex-col gap-10 md:flex-row md:items-center justify-between w-full relative'
+                                >
+                                    <p className='text-sm w-full md:w-140 inline-block font-normal'>
+                                        The lowest price for Karachi Family Guest House on your dates is Rs 2,987 a night.
+                                        Usually rooms for this hotel in February range from Rs 3,045 to Rs 3,045 a night
+                                        <span
+                                            onClick={() => setShowinfo((prev) => !prev)}
+                                            className='inline-block text-lg cursor-pointer ml-2'
+                                        >
+                                            <IoMdInformationCircle />
+                                        </span>
+                                    </p>
+
+                                    {showinfo && (
+                                        <div className='w-92 overflow-y-scroll no_scrollBar h-32 py-4 px-4 rounded-md bg-white flex z-20 flex-col items-start gap-2 border top-10 left-50 border-gray-100 absolute'>
+                                            <p className='text-sm w-full font-normal'>
+                                                We’ve tracked prices over a 12-month period for similar trips
+                                                (same month, hotel, number of guests and rooms).
+                                            </p>
+                                            <button
+                                                onClick={() => setShowinfo((prev) => !prev)}
+                                                className='cursor-pointer border-b text-sm border-gray-500'
+                                            >
+                                                Close
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    <div className='grid grid-cols-12 w-56 items-center gap-0.5'>
+                                        <span className='bg-[#0c838a] col-span-3 w-full h-2.5 rounded-l-2xl relative'>
+                                            <span className='absolute -top-8 -left-2 bg-[#0c838a] px-2 py-1 rounded-sm text-white text-xs font-bold'>
+                                                Rs 9,083
+                                            </span>
+                                            <span className='absolute top-4 left-0 text-xs'>
+                                                Rs 10,238
+                                            </span>
+                                        </span>
+
+                                        <span className='bg-[#05203C] w-full col-span-6 h-2.5'></span>
+
+                                        <span className='bg-[#E70866] col-span-3 w-full h-2.5 relative rounded-r-2xl'>
+                                            <span className='absolute top-4 right-0 text-xs'>
+                                                Rs 15,167
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </div>
 
 
                     <section id='Deals' className='w-full h-full py-4 px-4 rounded-md bg-gray-100 flex flex-col gap-6'>
                         <SearchRoomAndRates />
-                        {/* Filter Section */}
                         <div className='flex flex-col gap-3'>
                             <h2 className='text-lg text-black font-semibold'>Filter by</h2>
                             <div className='flex flex-row items-start flex-wrap gap-2 text-sm'>
@@ -312,36 +375,57 @@ const HotelDetails = () => {
 
                             </div>
                         </div>
-                        {/* Price Cards */}
                         <div className='flex flex-col items-start gap-2 w-full'>
                             <p className='text-lg text-black'>All taxes and fees included</p>
                             <div className='flex flex-col gap-2 w-full'>
-                                {/* Trip.com */}
                                 <div className='bg-white rounded-lg p-4 shadow-sm border h-48 overflow-auto no_scrollBar border-gray-200 flex justify-between items-start'>
-                                    <div className='flex flex-col gap-1 h-full justify-between'>
-                                        <div className='flex items-start flex-col'>
-                                            <p className='text-sm text-gray-500'>Our cheapest price</p>
-                                            <p className='text-blue-600 font-semibold'>on Trip.com</p>
-                                        </div>
-                                        <div className='flex flex-col items-start gap-2'>
-                                            <p className='text-sm font-semibold'>Twin room</p>
-                                            <ul className='flex pl-4 flex-col items-start'>
-                                                <li className='text-xs list-disc text-gray-500'>Non refundable</li>
-                                                <li className='text-xs list-disc text-gray-500'>Meals not included</li>
-                                            </ul>
-                                        </div>
-                                    </div>
 
-                                    <div className='flex items-end flex-col justify-between h-full'>
-                                        <div className='flex flex-col items-end gap-1'>
-                                            <h2 className='text-xl font-bold'>Rs 78,190</h2>
-                                            <p className='text-sm text-gray-500'>a night</p>
-                                        </div>
+                                    {loading ? (
+                                        <>
+                                            <Skeleton width={'80%'} height={30} />
+                                            <div className='flex items-start flex-col gap-10 md:flex-row md:items-center justify-between w-full'>
+                                                <div className='w-full md:w-140 flex flex-col gap-2'>
+                                                    <Skeleton width={'100%'} height={15} />
+                                                    <Skeleton width={'90%'} height={15} />
+                                                    <Skeleton width={'70%'} height={15} />
+                                                </div>
+                                                <div className='grid grid-cols-12 w-56 gap-0.5'>
+                                                    <Skeleton height={10} className='col-span-3 rounded-l-2xl' />
+                                                    <Skeleton height={10} className='col-span-6' />
+                                                    <Skeleton height={10} className='col-span-3 rounded-r-2xl' />
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className='flex flex-col gap-1 h-full justify-between'>
+                                                <div className='flex items-start flex-col'>
+                                                    <p className='text-sm text-gray-500'>Our cheapest price</p>
+                                                    <p className='text-blue-600 font-semibold'>on Trip.com</p>
+                                                </div>
+                                                <div className='flex flex-col items-start gap-2'>
+                                                    <p className='text-sm font-semibold'>Twin room</p>
+                                                    <ul className='flex pl-4 flex-col items-start'>
+                                                        <li className='text-xs list-disc text-gray-500'>Non refundable</li>
+                                                        <li className='text-xs list-disc text-gray-500'>Meals not included</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
 
-                                        <button className='py-2 px-5 bg-orange-600 text-white rounded-md'>Go to site</button>
-                                    </div>
+                                            <div className='flex items-end flex-col justify-between h-full'>
+                                                <div className='flex flex-col items-end gap-1'>
+                                                    <h2 className='text-xl font-bold'>Rs 78,190</h2>
+                                                    <p className='text-sm text-gray-500'>a night</p>
+                                                </div>
 
+                                                <button className='py-2 px-5 bg-orange-600 text-white rounded-md'>Go to site</button>
+                                            </div>
+                                        </>
+
+                                    )
+                                    }
                                 </div>
+
 
 
                                 {/* Agoda */}
@@ -416,11 +500,17 @@ const HotelDetails = () => {
 
                     <div className='flex flex-col items-start w-full'>
                         <div className='bg-white rounded-xl w-full shadow-lg border border-gray-100 overflow-hidden'>
-                            <iframe
-                                title="hotel-location"
-                                src="https://www.google.com/maps?q=Karachi+Expo+Center&output=embed"
-                                className="w-full h-96 border-0"
-                            ></iframe>
+                            {loading ? (
+                                <Skeleton width={'100%'} height={300} />
+                            ) : (
+                                <>
+                                    <iframe
+                                        title="hotel-location"
+                                        src="https://www.google.com/maps?q=Karachi+Expo+Center&output=embed"
+                                        className="w-full h-96 border-0"
+                                    ></iframe>
+                                </>
+                            )}
                         </div>
                         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 items-start w-full'>
                             {
@@ -449,30 +539,36 @@ const HotelDetails = () => {
                                 ].map((elemItem) => {
                                     return (
                                         <div key={elemItem.id} className='w-full justify-between flex flex-col items-start gap-5 h-60 no_scrollBar overflow-y-scroll bg-white py-4 px-3 rounded-xl shadow-lg border border-gray-100'>
-                                            <div className='flex items-end gap-2 '>
-                                                <h1 style={{
-                                                    fontFamily: "'Roboto', sans-serif"
-                                                }} className='text-xl font-semibold'>{elemItem.name}</h1>
-                                                <p className='text-sm text-gray-500'>{elemItem.km}</p>
-                                            </div>
-                                            <ul className='flex flex-col w-full items-start gap-1'>
-                                                {elemItem.funFact.map((item) => {
-                                                    return <li key={item.id} className='flex items-start flex-wrap justify-between w-full'>
-                                                        <h3 className='text-sm font-normal line-clamp-1 w-80 text-gray-500'>
-                                                            {item.name}
-                                                        </h3>
-                                                        <p className='text-sm font-normal text-gray-500'>{item.km}</p>
-                                                    </li>
-                                                })}
-                                            </ul>
-                                            <button className='bg-orange-600 text-white text-sm py-2 px-5 rounded-full '>View More</button>
+                                            {loading ? (
+                                                <Skeleton width={'100%'} height={200} />
+                                            ) : (
+                                                <>
+                                                    <div className='flex items-end gap-2 '>
+                                                        <h1 style={{
+                                                            fontFamily: "'Roboto', sans-serif"
+                                                        }} className='text-xl font-semibold'>{elemItem.name}</h1>
+                                                        <p className='text-sm text-gray-500'>{elemItem.km}</p>
+                                                    </div>
+                                                    <ul className='flex flex-col w-full items-start gap-1'>
+                                                        {elemItem.funFact.map((item) => {
+                                                            return <li key={item.id} className='flex items-start flex-wrap justify-between w-full'>
+                                                                <h3 className='text-sm font-normal line-clamp-1 w-80 text-gray-500'>
+                                                                    {item.name}
+                                                                </h3>
+                                                                <p className='text-sm font-normal text-gray-500'>{item.km}</p>
+                                                            </li>
+                                                        })}
+                                                    </ul>
+                                                    <button className='bg-orange-600 text-white text-sm py-2 px-5 rounded-full '>View More</button>
+                                                </>
+                                            )}
                                         </div>
                                     )
                                 })
                             }
                         </div>
                     </div>
-                </section>
+                </section >
 
                 <section id='Details' className='flex flex-col w-full items-start gap-4 py-10'>
                     <h1 className='text-2xl lg:text-4xl font-semibold' style={{
@@ -666,6 +762,7 @@ const HotelDetails = () => {
                     <Amenities />
                 </section>
             </Container >
+
             <div className='bg-gray-100 py-10 px-0 md:px-5 w-full h-full'>
                 <Container>
                     <div className='flex flex-col w-full items-start gap-4 py-10'>

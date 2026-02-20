@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
 import { LuSofa } from "react-icons/lu";
 import { hotelsData } from "../Data/Data";
-const AllFilters = () => {
+const AllFilters = ({ hotelData }) => {
     const [openFilterSection, setOpenFilterSection] = useState(false)
 
     const filtersData = [
@@ -92,7 +92,7 @@ const AllFilters = () => {
                     <button>All filters</button>
                 </div>
 
-                <p className="text-sm">All taxes and fees included | {hotelsData.length} results</p>
+                <p className="text-sm">All taxes and fees included | {hotelData.length} results</p>
             </div>
 
             <div className={`w-full sm:w-80 bg-white h-screen fixed top-0 left-0 all_Filter transition-transform duration-500

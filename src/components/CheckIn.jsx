@@ -1,186 +1,130 @@
-import React, { useState } from 'react'
-import PriceCalendar from './RangeCalendar';
-import { IoAdd } from "react-icons/io5";
-import { FiMinus } from "react-icons/fi";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry }) => {
+    const [country, setCountry] = useState(null);
+    const [city, setCity] = useState("");
+    const [hotel, setHotel] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    // const countries = Object.keys(dataStructure);
+    // const cities = country
+    //     ? Object.keys(dataStructure[country])
+    //     : [];
+    // const hotels = country && city
+    //     ? dataStructure[country][city]
+    //     : [];
+    const handleSearch = () => {
+        if (!country) {
+            setError("Please select Country, City and Hotel");
+            return;
+        }
+        setError("");
+        const searchData = {
+            city_name: city?.city_name || "",
+            city_code: city?.city_code || "",
+            country_name: selectedCountry?.country_name || "",
+            country_code: selectedCountry?.country_code || "",
+            hotel_name: hotel || "",
 
-const bookingFields = {
-    destination: {
-        label: "Where do you want to go?",
-        placeholder: "Enter a destination or hotel name",
-    },
-    checkIn: { label: "Check-in" },
-    checkOut: { label: "Check-out" },
-    guests: { label: "Guests and rooms" },
-};
-
-const cities = ["Dubai", "London", "New York", "Paris", "Istanbul"];
-
-const CheckIn = () => {
-    const [showCalendar, setShowCalendar] = useState(false);
-    const [data, setData] = useState({
-        destination: "",
-        checkIn: "",
-        checkOut: "",
-        rooms: 4,
-        adults: 8,
-        children: 1,
-        childrenAges: [0],
-        freeCancellation: false,
-        fourStars: false,
-    });
-
-    const [showCities, setShowCities] = useState(false);
-    const [showGuests, setShowGuests] = useState(false);
-
-    const filteredCities = cities.filter(city =>
-        city.toLowerCase().includes(data.destination.toLowerCase())
-    );
-
-    const updateChildren = (count) => {
-        setData({
-            ...data,
-            children: count,
-            childrenAges: count > 0 ? Array(count).fill(0) : [],
-        });
+            lat: city?.lat || selectedCountry?.lat || null,
+            lng: city?.lng || selectedCountry?.lng || null,
+        };
+        navigate(`/hotels?data=${encodeURIComponent(JSON.stringify(searchData))}`);
+        console.log("Search Data:", searchData);
     };
 
     return (
-        <div className="py-4 flex flex-col gap-4 px-4 w-full bg-white shadow-sm rounded-sm">
-            <div className="grid grid-cols-12 gap-3 items-end">
-                <div className="col-span-12 lg:col-span-4 relative">
-                    <p className="text-xs text-gray-500">{bookingFields.destination.label}</p>
-                    <input
-                        type="text"
-                        placeholder={bookingFields.destination.placeholder}
-                        className="w-full hover:bg-gray-100 mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm outline-none"
-                        value={data.destination}
+        <div className="py-4 px-4 w-full bg-white shadow-sm rounded-sm">
+            <div className="grid w-full grid-cols-12 gap-3 items-end">
+                <div className="col-span-12 sm:col-span-3">
+                    <p className="text-xs text-gray-500">Select Hotels</p>
+                    <input value={hotel} onChange={(e) => setHotel(e.target.value)} type="text" placeholder="Search Your Hotels" className="border mt-1 border-gray-200 rounded-sm w-full outline-0 px-2 py-2 text-s" />
+                </div>
+
+                <div className="col-span-12 sm:col-span-3">
+                    <p className="text-xs text-gray-500">Select Country</p>
+                    <select
+                        value={country}
                         onChange={(e) => {
-                            setData({ ...data, destination: e.target.value });
-                            setShowCities(true);
+                            const value = e.target.value;
+                            setCountry(value);
+                            const selected = countries.find(
+                                (c) => c.country_name === value
+                            );
+                            setSelectedCountry(selected || null);
+                            setCity("");
+                            setError("");
                         }}
-                    />
-
-                    {showCities && data.destination && (
-                        <div className="bg-white border absolute z-10 border-gray-100 w-full mt-1 rounded-sm shadow-lg">
-                            {filteredCities.map((city, i) => (
-                                <div
-                                    key={i}
-                                    className="px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
-                                    onClick={() => {
-                                        setData({ ...data, destination: city });
-                                        setShowCities(false);
-                                    }}
-                                >
-                                    {city}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-
-                <div className="lg:col-span-4 col-span-12 relative">
-                    <p className="text-xs text-gray-500">Check-in — Check-out</p>
-                    <div
-                        onClick={() => setShowCalendar(!showCalendar)}
-                        className="w-full mt-1 border border-gray-200 rounded-sm px-2 py-2 text-sm cursor-pointer hover:bg-gray-100"
+                        className="w-full mt-1 border border-gray-200 outline-0 rounded-sm px-2 py-2 text-sm"
                     >
-                        {data.checkIn && data.checkOut
-                            ? `${data.checkIn} → ${data.checkOut}`
-                            : "Select dates"}
-                    </div>
-                    {showCalendar && (
-                    <PriceCalendar
-                            data={data}
-                            setData={setData}
-                            close={() => setShowCalendar(false)}
-                        />
-                    )}
+                        <option value="">Choose Country</option>
+
+                        {countries?.map((c) => (
+                            <option
+                                key={c.country_code}
+                                value={c.country_name}
+                            >
+                                {c.country_name}
+                            </option>
+                        ))}
+                    </select>
 
                 </div>
 
-                <div className="lg:col-span-2 col-span-12 relative">
-                    <p className="text-xs text-gray-500">{bookingFields.guests.label}</p>
-                    <div
-                        className="border hover:bg-gray-100 border-gray-200 whitespace-nowrap rounded-sm px-2 py-2 text-sm mt-1 cursor-pointer"
-                        onClick={() => setShowGuests(!showGuests)}
+                <div className="col-span-12 sm:col-span-3">
+                    <p className="text-xs text-gray-500">Select City</p>
+                    <select
+                        value={city?.city_name || ""}
+                        disabled={!country}
+                        onChange={(e) => {
+                            const selectedCityObj = cities.find(
+                                (c) => c.city_name === e.target.value
+                            );
+                            setCity(selectedCityObj || null);
+                            setSelectedCity(selectedCityObj || null);
+                            setError("");
+                        }}
+                        className="w-full mt-1 border outline-0 border-gray-200 rounded-sm px-2 py-2 text-sm disabled:bg-gray-100"
                     >
-                        {data.adults} adults, {data.rooms} rooms
-                    </div>
-
-                    {showGuests && (
-                        <div className="absolute z-10 bg-white border border-gray-100 rounded-md shadow-xl p-4 mt-2 w-72">
-
-                            <GuestCounter
-                                label="Rooms"
-                                value={data.rooms}
-                                onChange={(val) => setData({ ...data, rooms: val })}
-                                min={1}
-                            />
-
-                            <GuestCounter
-                                label="Adults"
-                                value={data.adults}
-                                onChange={(val) => setData({ ...data, adults: val })}
-                                min={1}
-                            />
-
-                            <GuestCounter
-                                label="Children"
-                                value={data.children}
-                                onChange={updateChildren}
-                                min={0}
-                            />
-
-                            {data.children > 0 && (
-                                <div className="mt-3">
-                                    <p className="text-xs text-gray-500 mb-2">Age of child</p>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {data.childrenAges.map((age, i) => (
-                                            <input
-                                                key={i}
-                                                type="number"
-                                                min="0"
-                                                max="17"
-                                                className="border border-gray-300 outline-0 rounded-sm px-2 py-1 text-sm"
-                                                value={age}
-                                                onChange={(e) => {
-                                                    const updatedAges = [...data.childrenAges];
-                                                    updatedAges[i] = e.target.value;
-                                                    setData({ ...data, childrenAges: updatedAges });
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                        </div>
-                    )}
+                        {!country ? (
+                            <option value="">No country selected</option>
+                        ) : (
+                            <>
+                                <option value="">Choose City</option>
+                                {cities?.map((c, i) => (
+                                    <option key={i} value={c.city_name}>
+                                        {c.city_name}
+                                    </option>
+                                ))}
+                            </>
+                        )}
+                    </select>
                 </div>
-                <div className="lg:col-span-2 col-span-12">
-                    <button className="w-full py-2 bg-orange-600 text-white rounded-lg text-sm">
+
+                <div className="col-span-12 sm:col-span-3">
+                    <button
+
+                        onClick={handleSearch}
+                        className="w-full py-2 cursor-pointer bg-(--primary-color) text-white rounded-lg text-sm hover:bg-(--primary-color)/90 transition">
                         Search
                     </button>
                 </div>
+
             </div>
-        </div>
+            {
+                error && (
+                    <p className="text-red-500 text-sm mt-3">{error}</p>
+                )
+            }
+            {
+                (country || city || hotel) && (
+                    <div className="mt-4 text-sm text-gray-600">
+                        Selected: {country} {city && `→ ${city?.city_name}`} {hotel && `→ ${hotel}`}
+                    </div>
+                )
+            }
+        </div >
     );
 };
-const GuestCounter = ({ label, value, onChange, min }) => (
-    <div className="flex items-center justify-between mb-3">
-        <span className="text-sm">{label}</span>
-        <div className="flex items-center gap-3">
-            <button
-                className="w-6 h-6 border border-gray-100 flex items-center justify-center text-sm cursor-pointer rounded"
-                onClick={() => value > min && onChange(value - 1)}
-            ><FiMinus /></button>
-            <span className="text-sm">{value}</span>
-            <button
-                className="w-6 h-6 border border-gray-100 flex items-center justify-center text-sm cursor-pointer rounded"
-                onClick={() => onChange(value + 1)}
-            ><IoAdd /></button>
-        </div>
-    </div>
-);
 
 export default CheckIn;

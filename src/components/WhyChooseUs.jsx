@@ -13,9 +13,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const WhyChooseUs = () => {
-
     const [loading, setLoading] = useState(true)
-
     const Data = [
         {
             id: 1,
@@ -55,23 +53,18 @@ const WhyChooseUs = () => {
 
     return (
         <Container>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full px-0 lg:px-4 py-10'>
-
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full px-0 lg:pr-2 py-5'>
                 {(loading ? Array(Data.length).fill({}) : Data).map((ElemItem, index) => (
-
                     <div
                         key={index}
                         className='flex flex-col items-start justify-between gap-2 py-6 px-5 w-full h-44 rounded-3xl border border-gray-200'
                     >
-
                         {loading ? (
-
                             <div className="flex w-full items-center gap-2">
                                 <Skeleton circle width={12} height={12} count={3} />
                             </div>
 
                         ) : ElemItem.images ? (
-
                             <div className="flex items-center">
                                 {ElemItem.images.map((item, index) => (
                                     <img
@@ -82,9 +75,7 @@ const WhyChooseUs = () => {
                                     />
                                 ))}
                             </div>
-
                         ) : (
-
                             <div className='flex items-center gap-1'>
                                 {ElemItem.ratingStar.map((item) => (
                                     <span key={item} className='text-2xl text-yellow-500'>
@@ -93,10 +84,7 @@ const WhyChooseUs = () => {
                                 ))}
                             </div>
                         )}
-
-                        {/* Title + Desc */}
                         <div className='flex flex-col items-start w-full'>
-
                             <h1 className='text-2xl font-semibold'>
                                 {loading ? <Skeleton width={180} /> : ElemItem.title}
                             </h1>
@@ -104,13 +92,9 @@ const WhyChooseUs = () => {
                             <p className='text-sm text-gray-600'>
                                 {loading ? <Skeleton width={140} /> : ElemItem.desc}
                             </p>
-
                         </div>
-
                     </div>
-
                 ))}
-
             </div>
         </Container>
     )
