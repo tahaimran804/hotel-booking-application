@@ -344,7 +344,7 @@ const FindAccommodations = () => {
 
 
     return (
-        <Container>
+        <Container className="mt-5">
             <div className='flex flex-col items-start'>
                 <h1 className='text-2xl sm:text-4xl font-bold' style={{
                     fontFamily: "'Roboto', sans-serif"
