@@ -86,7 +86,7 @@ const AllFilters = ({ hotelData }) => {
             <div className="flex items-center gap-3">
                 <div
                     onClick={() => setOpenFilterSection(true)}
-                    className="flex cursor-pointer border border-gray-200 py-3 px-4 rounded-md bg-orange-600 text-white text-sm font-semibold items-center gap-2"
+                    className="flex cursor-pointer border border-gray-200 py-3 px-4 rounded-md bg-[var(--primary-color)] text-white text-sm font-semibold items-center gap-2"
                 >
                     <IoFilter />
                     <button>All filters</button>
@@ -133,7 +133,7 @@ const AllFilters = ({ hotelData }) => {
                 {/* Footer Buttons */}
                 <div className="absolute bottom-0 left-0 w-full border-t border-gray-100 bg-white p-4 flex gap-3">
                     <button className="text-black font-semibold">Clear</button>
-                    <button className="bg-orange-600 py-2 px-5 rounded-md w-full text-white">
+                    <button className="bg-[var(--primary-color)] py-2 px-5 rounded-md w-full text-white">
                         Show {hotelsData.length} results
                     </button>
                 </div>

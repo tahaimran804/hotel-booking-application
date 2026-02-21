@@ -78,11 +78,11 @@ const Manage_All_User = () => {
                                     </td>
                                     <td className='px-4 py-3 whitespace-nowrap'>
                                         <div className='flex items-center gap-2'>
-                                            <button className='cursor-pointer    text-orange-600 hover:text-orange-700 text-lg transition'>
+                                            <button className='cursor-pointer    text-[var(--primary-color)] text-lg transition'>
                                                 <FiEdit />
                                             </button>
 
-                                            <button className='cursor-pointer    text-red-500 hover:text-red-700 text-lg transition'>
+                                            <button className='cursor-pointer text-red-500 text-lg transition'>
                                                 <MdDeleteOutline />
                                             </button>
                                         </div>

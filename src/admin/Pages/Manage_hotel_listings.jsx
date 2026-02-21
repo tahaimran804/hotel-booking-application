@@ -163,11 +163,11 @@ const Manage_hotel_listings = () => {
                                     {/* Actions */}
                                     <td className='px-4 whitespace-nowrap py-3'>
                                         <div className='flex gap-3'>
-                                            <button className='text-orange-500 hover:text-orange-700 text-lg'>
+                                            <button className='text-[var(--primary-color)] cursor-pointer text-lg'>
                                                 <FiEdit />
                                             </button>
 
-                                            <button className='text-red-500 hover:text-red-700 text-lg'>
+                                            <button className='text-red-500 cursor-pointer hover:text-red-700 text-lg'>
                                                 <MdDeleteOutline />
                                             </button>
                                         </div>

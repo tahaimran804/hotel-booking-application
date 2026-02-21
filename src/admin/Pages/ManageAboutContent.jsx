@@ -112,7 +112,7 @@ const ManageAboutContent = () => {
 
                 <button
                     type='submit'
-                    className='bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-semibold'
+                    className='bg-[var(--primary-color)] text-white px-6 py-3 rounded-lg hover:bg-[var(--primary-color)]/95 cursor-pointer transition-colors font-semibold'
                 >
                     Save All
                 </button>

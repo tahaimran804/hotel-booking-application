@@ -139,7 +139,7 @@ const FiltersButtons = () => {
 
     return (
         <div className='flex flex-col items-start w-full gap-2'>
-            <div className='grid relative w-full bg-white rounded-md border border-gray-100 px-5 items-center gap-4 grid-cols-5'>
+            <div className='grid relative w-full bg-white rounded-md border border-gray-100 items-center gap-4 grid-cols-5'>
                 {FiltersButtonData.map((items) => {
 
                     const isActive = activeFilter === items.name
@@ -163,8 +163,16 @@ const FiltersButtons = () => {
                                     setShowInfo(false)
                                 }
                             }}
-                            className={`py-4 w-full text-sm cursor-pointer whitespace-nowrap font-normal flex items-end gap-1 px-4 
-            ${isActive ? "text-orange-600 border-b-2 border-orange-600" : "text-black hover:underline"}`}
+                            className={`
+    py-3 w-full text-sm font-medium
+    flex items-center justify-center gap-1
+    transition-all duration-200
+     cursor-pointer
+    ${isActive
+                                    ? "bg-[var(--primary-color)] rounded-sm text-white shadow-sm"
+                                    : "text-gray-600 hover:bg-white/60 hover:text-black"
+                                }
+`}
                         >
 
                             {items.name}
@@ -184,18 +192,32 @@ const FiltersButtons = () => {
                     )
                 })}
 
-                {showInfo && (<div className='w-120 left-0 z-40 shadow-lg h-36 py-4 px-4 rounded-lg absolute flex flex-col items-start gap-1 top-14 bg-white border border-gray-100'>
-                    <h1 style={{
-                        fontFamily: "'Roboto', sans-serif"
-                    }} className='text-lg font-semibold text-black'>What is our ‘Recommended’ order?</h1>
-                    <p className='text-sm text-black'>We find prices from all across the web – what providers pay us affects how we sort results.</p>
-                    <Link to={"#"}>
-                        <span className='text-orange-600 text-sm capitalize'>Learn how Kayak works</span>
-                    </Link>
-                </div>)}
+                {showInfo && (
+                    <div className="absolute left-4 top-14 w-96 z-50 
+        bg-white border border-gray-200 rounded-xl 
+        shadow-xl p-5 animate-fadeIn">
+
+                        <h1 className="text-base font-semibold text-gray-800 mb-2">
+                            What is our ‘Recommended’ order?
+                        </h1>
+
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                            We find prices from all across the web – what providers pay us affects how we sort results.
+                        </p>
+
+                        <Link to="/about-us">
+                            <span className="text-[var(--primary-color)] text-sm font-medium mt-3 inline-block hover:underline">
+                                Learn how RateCompares works
+                            </span>
+                        </Link>
+                    </div>
+                )}
 
                 {newerestLocation && (
-                    <div className='w-80 right-0 shadow-lg z-20 h-60 overflow-y-scroll py-4 rounded-lg absolute flex flex-col gap-3 top-14 bg-white border border-gray-100'>
+                    <div className="absolute right-4 top-14 w-96 max-h-96 overflow-y-auto
+        bg-white border border-gray-200 rounded-xl shadow-xl
+        py-4 z-50 animate-fadeIn">
+
                         <div className='flex flex-col items-start gap-2'>
                             <h4 className="font-semibold bg-gray-100 py-2 px-4 w-full text-sm">
                                 {nearbyPlacesData.cityDistance.label}
@@ -244,17 +266,24 @@ const FiltersButtons = () => {
                     </div>
                 )}
             </div>
+
+
+
+
             <div className='w-full bg-white flex items-center gap-2 rounded-md border py-3 border-gray-100 px-5'>
                 <p className='text-sm text-black'>We find prices from all across the web – what providers pay us affects how we sort results.</p>
-                <Link to={"#"}>
-                    <span className='text-orange-600 text-sm capitalize'>Learn how Kayak works</span>
+                <Link to={"/about-us"}>
+                    <span className='text-[var(--primary-color)] text-sm capitalize'>Learn how RateCompares works</span>
                 </Link>
             </div>
-            <div className='w-full bg-white flex flex-col gap-5 items-center rounded-md border py-3 border-gray-200 px-5'>
+
+
+
+            {/* <div className='w-full bg-white flex flex-col gap-5 items-center rounded-md border py-3 border-gray-200 px-5'>
                 <div onClick={() => setHidePriceData((prev) => !prev)} className='flex cursor-pointer items-center gap-5 justify-between w-full'>
                     <h1 style={{
                         fontFamily: "'Roboto', sans-serif"
-                    }} className='text-xl font-bold'>Prices are <span className='text-orange-600'>lower</span> than usual</h1>
+                    }} className='text-xl font-bold'>Prices are <span className='text-[]'>lower</span> than usual</h1>
                     <button className='text-sm cursor-pointer font-semibold flex items-center gap-1'>{hidePriceData ? "Hide price data" : " Show price data"} <span> {hidePriceData ? <IoIosArrowUp /> : <IoIosArrowDown />}  </span></button>
                 </div>
                 {hidePriceData && (
@@ -281,7 +310,7 @@ const FiltersButtons = () => {
                         </div>
                     </div>
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -84,7 +84,7 @@ const Bookings = () => {
                                 <td className='px-4 whitespace-nowrap py-3'>{item.rooms}</td>
 
                                 <td className='px-4 whitespace-nowrap py-3'>
-                                    <button className='bg-orange-600 text-white px-3 py-1 rounded text-xs hover:bg-orange-700'>
+                                    <button className='bg-[var(--primary-color)] text-white px-3 py-1 rounded text-xs hover:bg-[var(--primary-color)]/95 cursor-pointer transition '>
                                         View
                                     </button>
                                 </td>

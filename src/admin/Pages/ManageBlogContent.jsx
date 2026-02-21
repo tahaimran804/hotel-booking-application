@@ -150,7 +150,7 @@ const ManageBlogContent = () => {
 
                 <button
                     type='submit'
-                    className='bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-semibold'
+                    className='bg-[var(--primary-color)] text-white px-6 py-3 rounded-lg hover:bg-[var(--primary-color)]/95 cursor-pointer transition-colors font-semibold'
                 >
                     {editId ? "Update Blog" : "Add Blog"}
                 </button>
@@ -170,10 +170,10 @@ const ManageBlogContent = () => {
                             {blog.authorImage && <img src={blog.authorImage} alt={blog.authorName} className='mt-2 w-16 h-16 object-cover rounded-full' />}
                         </div>
                         <div className='flex items-center gap-2'>
-                            <button onClick={() => handleEdit(blog)} className='text-yellow-500 hover:text-yellow-600'>
+                            <button onClick={() => handleEdit(blog)} className='text-[var(--primary-color)] cursor-pointer hover:text-[var(--primary-color)]/95'>
                                 <AiFillEdit size={20} />
                             </button>
-                            <button onClick={() => handleDelete(blog.id)} className='text-red-500 hover:text-red-600'>
+                            <button onClick={() => handleDelete(blog.id)} className='text-red-500 cursor-pointer hover:text-red-600'>
                                 <AiFillDelete size={20} />
                             </button>
                         </div>

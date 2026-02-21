@@ -58,7 +58,7 @@ function MultipleItems() {
                 <Slider {...settings}>
                     {PartnerLogosData.map((partner) => (
                         <div key={partner.id} className="px-4">
-                            <div className="max-[480px]:h-10 h-14 flex items-center justify-center transition duration-300">
+                            <div className="max-[480px]:h-10 h-12 flex items-center justify-center transition duration-300">
                                 <img
                                     src={partner.logo}
                                     alt={`Partner ${partner.id}`}

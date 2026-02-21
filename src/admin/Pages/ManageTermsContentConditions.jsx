@@ -92,7 +92,7 @@ const ManageTermsContentConditions = () => {
 
                 <button
                     type='submit'
-                    className='bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-700 transition font-semibold'
+                    className='bg-[var(--primary-color)] text-white py-3 rounded-lg hover:bg-[var(--primary-color)]/95 cursor-pointer transition font-semibold'
                 >
                     {editId ? "Update Section" : "Add Section"}
                 </button>
@@ -117,14 +117,14 @@ const ManageTermsContentConditions = () => {
                         <div className='flex items-start gap-3'>
                             <button
                                 onClick={() => handleEdit(policy)}
-                                className='text-yellow-500 hover:text-yellow-600'
+                                className='text-[var(--primary-color)] cursor-pointer hover:text-[var(--primary-color)]/95'
                             >
                                 <AiFillEdit size={20} />
                             </button>
 
                             <button
                                 onClick={() => handleDelete(policy.id)}
-                                className='text-red-500 hover:text-red-600'
+                                className='text-red-500 cursor-pointer hover:text-red-600'
                             >
                                 <AiFillDelete size={20} />
                             </button>

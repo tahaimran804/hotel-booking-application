@@ -23,7 +23,7 @@ const Login = () => {
                             }} className='text-sm font-normal'>Admin Password</label>
                             <input type="password" required className=' outline-0 w-full py-2 px-2 rounded-md border border-gray-100' />
                         </div>
-                        <button className='py-2 px-4 rounded-md cursor-pointer bg-orange-600 text-white  w-full'>Admin Login</button>
+                        <button className='py-2 px-4 rounded-md cursor-pointer bg-[var(--primary-color)] text-white  w-full'>Admin Login</button>
                     </form>
                 </div>
             </div>

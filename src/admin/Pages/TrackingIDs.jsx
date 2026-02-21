@@ -128,7 +128,7 @@ const TrackingIDs = () => {
                                     </span>
                                 </td>
                                 <td className='p-3 whitespace-nowrap'>
-                                    <button className='text-blue-600 hover:text-blue-800'>
+                                    <button className='text-[var(--primary-color)] hover:text-[var(--primary-color)]/95 cursor-pointer transition'>
                                         <AiOutlineEye size={20} />
                                     </button>
                                 </td>

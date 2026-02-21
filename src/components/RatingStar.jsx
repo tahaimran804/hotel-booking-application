@@ -1,10 +1,11 @@
+import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaRegStarHalf } from "react-icons/fa6";
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 
 const RatingStar = ({ item }) => {
-    console.log("Original rating:", item);
+    console.log("Original rating:", typeof item, item);
 
     let numericRating = 0;
-
     if (typeof item === "string") {
         switch (item.trim()) {
             case "OneStar":
@@ -28,18 +29,16 @@ const RatingStar = ({ item }) => {
     } else if (typeof item.rating === "number") {
         numericRating = item.rating;
     }
-
     return (
         <div className="text-yellow-600 flex items-center gap-1">
             {Array.from({ length: 5 }).map((_, index) => {
                 const starNumber = index + 1;
-
                 if (numericRating >= starNumber) {
-                    return <IoIosStar key={index} />;
+                    return <FaStar key={index} />;
                 } else if (numericRating >= starNumber - 0.5) {
-                    return <IoIosStarHalf key={index} />;
+                    return <FaRegStarHalf key={index} />;
                 } else {
-                    return <IoIosStarOutline key={index} />;
+                    return <FaRegStar key={index} />;
                 }
             })}
         </div>

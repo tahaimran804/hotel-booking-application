@@ -27,6 +27,7 @@ import Faq from "./pages/Faq"
 import UserLayout from "./components/UserLayout"
 import Recentlyviewed from "./pages/User/Recentlyviewed"
 import Search_Preferences from "./pages/User/Search_Preferences"
+import Admin_Profile from "./admin/Pages/Admin_Profile"
 
 const App = () => {
   return (
@@ -59,6 +60,7 @@ const App = () => {
           <Route path="/manage-all-hotel-listings" element={<Manage_hotel_listings />} />
           <Route path="/analytics-dashboard" element={<Analytics />} />
           <Route path="/manage-tracking-ids" element={<TrackingIDs />} />
+          <Route path="/admin-profile" element={<Admin_Profile />} />
 
           <Route path="/manage-about-content" element={<ManageAboutContent />} />
           <Route path="/manage-blog-content" element={<ManageBlogContent />} />

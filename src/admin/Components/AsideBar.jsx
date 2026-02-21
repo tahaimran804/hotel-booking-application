@@ -50,8 +50,8 @@ const AsideBar = () => {
                     ) : (
                         <Link onClick={() => setOpenAsideBar(false)} to={item.pathName}>
                             <div
-                                className={`flex items-center gap-3 px-6 py-3 cursor-pointer hover:bg-orange-50 hover:text-orange-600 duration-200 
-                                    ${Location.pathname === item.pathName ? "bg-orange-50 text-orange-600" : ""}`}
+                                className={`flex items-center gap-3 px-6 py-3 cursor-pointer hover:bg-[var(--primary-color)] hover:text-white duration-200 
+                                    ${Location.pathname === item.pathName ? "bg-[var(--primary-color)]  text-white " : ""}`}
                             >
                                 <span className='text-xl'>{item.icon}</span>
                                 <h2 style={{ fontFamily: "'Roboto', sans-serif" }} className='text-sm font-normal'>
