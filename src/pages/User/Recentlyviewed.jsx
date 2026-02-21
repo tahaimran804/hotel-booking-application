@@ -50,7 +50,7 @@ const RecentlyViewed = () => {
                 {recentData.map((item) => (
                     <div
                         key={item.id}
-                        className="border border-[var(--border-color)] 
+                        className="border border-gray-200
                         bg-[var(--card-bg-color)] 
                         cursor-pointer
                         rounded-xl overflow-hidden 

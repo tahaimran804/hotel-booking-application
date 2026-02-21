@@ -48,8 +48,8 @@ const UserAsideBar = () => {
     return (
         <div className='flex flex-col w-full lg:pb-10 lg:sticky top-0 items-center gap-1'>
             <div className='flex flex-col mt-4 items-center gap-2 w-full'>
-                <div className='w-full flex sticky top-0 items-center justify-between border-b py-4 px-4 rounded-t-md hover:bg-gray-100 border-gray-200'>
-                    <div onClick={() => navigateBack("/")} className={`flex cursor-pointer items-center w-full gap-2 justify-between`}>
+                <div onClick={() => navigateBack("/")} className='w-full flex items-center justify-between border-b py-4 px-4 rounded-t-md hover:bg-gray-100 border-gray-200'>
+                    <div className={`flex cursor-pointer items-center w-full gap-2 justify-between`}>
                         <li className='flex items-center gap-2 w-full'>
                             <span><IoArrowBack /></span>
                             Back
@@ -76,15 +76,15 @@ const UserAsideBar = () => {
                     {UserProfile.map((elemItem) => {
                         const isActive = location.pathname === elemItem.url;
                         return (
-                            <div onClick={() => setOpenAsideMenu(false)} className={`flex border-b cursor-pointer border-gray-200 py-4 px-4 rounded-t-md hover:bg-gray-100 items-center w-full gap-2 justify-between ${isActive ? 'bg-gray-100' : ''}`}>
-                                <Link to={elemItem.url} className='flex items-center gap-2 w-full'>
+                            <Link to={elemItem.url} key={elemItem.id} className='flex items-center gap-2 mt-2 w-full'>
+                                <div onClick={() => setOpenAsideMenu(false)} className={`flex border-b cursor-pointer border-gray-200 py-4 px-4 rounded-t-md hover:bg-gray-100 items-center w-full gap-2 justify-between ${isActive ? 'bg-gray-100' : ''}`}>
                                     <li className='flex items-center gap-2 w-full'>
                                         <span>{elemItem.icon}</span>
                                         {elemItem.name}
                                     </li>
                                     <span className="text-xl text-black"><MdKeyboardArrowRight /></span>
-                                </Link>
-                            </div>
+                                </div>
+                            </Link>
                         )
                     })}
                     <button className='w-full rounded-md items-center justify-center py-3 px-4 text-black mt-4 cursor-pointer bg-gray-100'>Logout</button>

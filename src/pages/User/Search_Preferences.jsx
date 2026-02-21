@@ -52,7 +52,7 @@ const Search_Preferences = () => {
                     <div
                         key={index}
                         className="h-[200px] cursor-pointer 
-                            border border-[var(--border-color)] 
+                            border border-gray-200
                             bg-[var(--accent-color)] 
                             rounded-xl flex flex-col gap-4 py-4 px-4"
                     >

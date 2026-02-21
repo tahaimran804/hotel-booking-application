@@ -28,7 +28,7 @@ const UserProfile = () => {
                 </p>
             </div>
 
-            <div className="mt-8 border border-[var(--border-color)] rounded-lg p-5">
+            <div className="mt-8 border border-gray-200 rounded-lg p-5">
                 <div
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => setEditName(!editName)}
@@ -55,7 +55,7 @@ const UserProfile = () => {
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             placeholder="First Name"
-                            className="border border-[var(--border-color)] rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
+                            className="border border-gray-200 rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
                         />
 
                         <input
@@ -63,7 +63,7 @@ const UserProfile = () => {
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
                             placeholder="Last Name"
-                            className="border border-[var(--border-color)] rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
+                            className="border border-gray-200 rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
                         />
 
                         <div className="flex gap-3 mt-2">
@@ -76,7 +76,7 @@ const UserProfile = () => {
 
                             <button
                                 onClick={() => setEditName(false)}
-                                className="border border-[var(--border-color)] px-4 py-2 rounded-md"
+                                className="border border-gray-200 px-4 py-2 rounded-md"
                             >
                                 Cancel
                             </button>
@@ -94,13 +94,13 @@ const UserProfile = () => {
                         type="email"
                         value="mebahe6344@newtrea.com"
                         disabled
-                        className='bg-gray-100 border border-[var(--border-color)] rounded-md px-3 py-2 text-[var(--text-color)]'
+                        className='bg-gray-100 border border-gray-200 rounded-md px-3 py-2 text-[var(--text-color)]'
                     />
                 </div>
 
             </div>
 
-            <div className="mt-6 border border-[var(--border-color)] rounded-lg p-5">
+            <div className="mt-6 border border-gray-200 rounded-lg p-5">
 
                 <div
                     className="flex justify-between items-center cursor-pointer"
@@ -129,7 +129,7 @@ const UserProfile = () => {
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
                             placeholder="Current Password"
-                            className="border border-[var(--border-color)] rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
+                            className="border border-gray-200 rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
                         />
 
                         <input
@@ -137,7 +137,7 @@ const UserProfile = () => {
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             placeholder="New Password"
-                            className="border border-[var(--border-color)] rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
+                            className="border border-gray-200 rounded-md px-3 py-2 focus:border-[var(--primary-color)] outline-none"
                         />
 
                         <div className="flex gap-3 mt-2">
@@ -150,7 +150,7 @@ const UserProfile = () => {
 
                             <button
                                 onClick={() => setEditPassword(false)}
-                                className="border border-[var(--border-color)] px-4 py-2 rounded-md"
+                                className="border border-gray-200 px-4 py-2 rounded-md"
                             >
                                 Cancel
                             </button>
@@ -227,7 +227,7 @@ const UserProfile = () => {
 
                         <button
                             onClick={() => setDeleteAccount(false)}
-                            className='flex-1 border border-[var(--border-color)] py-2 rounded-md text-[var(--text-color)] hover:bg-gray-50 transition'
+                            className='flex-1 border border-gray-200 py-2 rounded-md text-[var(--text-color)] hover:bg-gray-50 transition'
                         >
                             Cancel
                         </button>
