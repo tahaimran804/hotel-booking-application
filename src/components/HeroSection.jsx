@@ -13,42 +13,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry }) => {
-    const location = useLocation()
-    const navData = [
-        {
-            id: 1,
-            name: "Flights",
-            icon: <GiCommercialAirplane />,
-            url: "#",
-        },
-        {
-            id: 2,
-            name: "Stays",
-            icon: <IoBedOutline />,
-            url: "/",
-        },
-        {
-            id: 3,
-            name: "Cars",
-            icon: <FaCarSide />,
-            url: "#cars",
-        },
-        {
-            id: 4,
-            name: "Packages",
-            icon: <MdTravelExplore />,
-            url: "#packages",
-        },
-        {
-            id: 5,
-            name: "Cruises",
-            icon: <LuShip />,
-            url: "#cruises",
-        },
-    ];
+const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
     const bgImages = [BgImage]
-
     return (
         <section className="relative w-full h-[600px] md:h-[500px]">
 
@@ -116,6 +82,12 @@ const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, s
                                         cities={cities}
                                         setSelectedCity={setSelectedCity}
                                         selectedCountry={selectedCountry}
+                                        hotels={hotels}
+                                        selectedHotel={selectedHotel}
+                                        setSelectedHotel={setSelectedHotel}
+                                        hotelSearch={hotelSearch}
+                                        setHotelSearch={setHotelSearch}
+                                        loading={loading}
                                     />
                                     {/* <div className="flex items-start flex-wrap gap-4">
                                     <p className="text-sm font-normal text-white">Compare vs. KAYAK</p>

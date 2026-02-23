@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry }) => {
+import Skeleton from "react-loading-skeleton";
+
+const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
     const [country, setCountry] = useState(null);
     const [city, setCity] = useState("");
     const [hotel, setHotel] = useState("");
@@ -24,7 +26,7 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
             city_code: city?.city_code || "",
             country_name: selectedCountry?.country_name || "",
             country_code: selectedCountry?.country_code || "",
-            hotel_name: hotel || "",
+            hotel_name: selectedHotel?.hotel_name || "",
 
             lat: city?.lat || selectedCountry?.lat || null,
             lng: city?.lng || selectedCountry?.lng || null,
@@ -35,73 +37,113 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
 
     return (
         <div className="py-4 px-4 w-full bg-white shadow-sm rounded-sm">
-            <div className="grid w-full grid-cols-12 gap-3 items-end">
-                <div className="col-span-12 sm:col-span-3">
+            <div className={`grid w-full grid-cols-12 gap-3 items-end`}>
+                <div className="col-span-12 w-full sm:col-span-3 relative">
                     <p className="text-xs text-gray-500">Select Hotels</p>
-                    <input value={hotel} onChange={(e) => setHotel(e.target.value)} type="text" placeholder="Search Your Hotels" className="border mt-1 border-gray-200 rounded-sm w-full outline-0 px-2 py-2 text-s" />
+                    <input value={hotelSearch} onChange={(e) => setHotelSearch(e.target.value)} type="text" placeholder="Search Your Hotels" className="border mt-1 border-gray-200 rounded-sm w-full outline-0 px-2 py-2 text-s" />
+                    {hotelSearch?.length > 2 && (
+                        <div className="absolute z-50 w-full bg-white border border-gray-200 shadow-md rounded-sm mt-1 max-h-60 overflow-y-auto">
+                            {loading ? (
+                                <div className="p-2">
+                                    <Skeleton height={40} count={3} />
+                                </div>
+                            ) : hotels?.length > 0 ? (
+                                <select
+                                    className="w-full outline-0 border-0 bg-white rounded-sm py-2 px-2"
+                                    value={selectedHotel?.id || ""}
+                                    onChange={(e) => {
+                                        const hotelObj = hotels.find(
+                                            (h) => String(h.id) === e.target.value
+                                        );
+                                        setSelectedHotel(hotelObj || null);
+                                    }}
+                                >
+                                    <option value="">Select Hotels</option>
+                                    {hotels.map((hotel) => (
+                                        <option key={hotel.id} value={hotel.id}>
+                                            {hotel.hotel_name}
+                                        </option>
+                                    ))}
+                                </select>
+                            ) : (
+                                <div className="p-2 text-sm text-gray-500">No hotels found</div>
+                            )}
+                        </div>
+                    )}
                 </div>
 
-                <div className="col-span-12 sm:col-span-3">
+                <div className="col-span-12 w-full sm:col-span-3">
                     <p className="text-xs text-gray-500">Select Country</p>
-                    <select
-                        value={country}
-                        onChange={(e) => {
-                            const value = e.target.value;
-                            setCountry(value);
-                            const selected = countries.find(
-                                (c) => c.country_name === value
-                            );
-                            setSelectedCountry(selected || null);
-                            setCity("");
-                            setError("");
-                        }}
-                        className="w-full mt-1 border border-gray-200 outline-0 rounded-sm px-2 py-2 text-sm"
-                    >
-                        <option value="">Choose Country</option>
+                    {loading ? (
+                        <div>
+                            <Skeleton height={40} count={1} />
+                        </div>
+                    ) : (
+                        <select
+                            value={country}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                setCountry(value);
+                                const selected = countries.find(
+                                    (c) => c.country_name === value
+                                );
+                                setSelectedCountry(selected || null);
+                                setCity("");
+                                setError("");
+                            }}
+                            className="w-full mt-1 border border-gray-200 outline-0 rounded-sm px-2 py-2 text-sm"
+                        >
+                            <option value="">Choose Country</option>
 
-                        {countries?.map((c) => (
-                            <option
-                                key={c.country_code}
-                                value={c.country_name}
-                            >
-                                {c.country_name}
-                            </option>
-                        ))}
-                    </select>
-
+                            {countries?.map((c) => (
+                                <option
+                                    key={c.country_code}
+                                    value={c.country_name}
+                                >
+                                    {c.country_name}
+                                </option>
+                            ))}
+                        </select>
+                    )}
                 </div>
 
-                <div className="col-span-12 sm:col-span-3">
+                <div className="col-span-12 w-full sm:col-span-3">
                     <p className="text-xs text-gray-500">Select City</p>
-                    <select
-                        value={city?.city_name || ""}
-                        disabled={!country}
-                        onChange={(e) => {
-                            const selectedCityObj = cities.find(
-                                (c) => c.city_name === e.target.value
-                            );
-                            setCity(selectedCityObj || null);
-                            setSelectedCity(selectedCityObj || null);
-                            setError("");
-                        }}
-                        className="w-full mt-1 border outline-0 border-gray-200 rounded-sm px-2 py-2 text-sm disabled:bg-gray-100"
-                    >
-                        {!country ? (
-                            <option value="">No country selected</option>
-                        ) : (
-                            <>
-                                <option value="">Choose City</option>
-                                {cities?.map((c, i) => (
-                                    <option key={i} value={c.city_name}>
-                                        {c.city_name}
-                                    </option>
-                                ))}
-                            </>
-                        )}
-                    </select>
+                    {loading ? (
+                        <div>
+                            <Skeleton height={40} count={1} />
+                        </div>
+                    ) : (
+                        <select
+                            value={city?.city_name || ""}
+                            disabled={!country}
+                            onChange={(e) => {
+                                const selectedCityObj = cities.find(
+                                    (c) => c.city_name === e.target.value
+                                );
+                                setCity(selectedCityObj || null);
+                                setSelectedCity(selectedCityObj || null);
+                                setError("");
+                            }}
+                            className="w-full mt-1 border outline-0 border-gray-200 rounded-sm px-2 py-2 text-sm disabled:bg-gray-100"
+                        >
+                            {!country ? (
+                                <option value="">No country selected</option>
+                            ) : (
+                                <>
+                                    <option value="">Choose City</option>
+                                    {cities?.map((c, i) => (
+                                        <option key={i} value={c.city_name}>
+                                            {c.city_name}
+                                        </option>
+                                    ))}
+                                </>
+                            )}
+                        </select>
+                    )}
                 </div>
 
-                <div className="col-span-12 sm:col-span-3">
+                <div className="col-span-12 w-full sm:col-span-3">
                     <button
 
                         onClick={handleSearch}
@@ -110,7 +152,7 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
                     </button>
                 </div>
 
-            </div>
+            </div >
             {
                 error && (
                     <p className="text-red-500 text-sm mt-3">{error}</p>

@@ -48,9 +48,9 @@ const UserAsideBar = () => {
     return (
         <div className='flex flex-col w-full lg:pb-10 lg:sticky top-0 items-center gap-1'>
             <div className='flex flex-col mt-4 items-center gap-2 w-full'>
-                <div onClick={() => navigateBack("/")} className='w-full flex items-center justify-between border-b py-4 px-4 rounded-t-md hover:bg-gray-100 border-gray-200'>
+                <div className='w-full flex items-center justify-between border-b py-4 px-4 rounded-t-md hover:bg-gray-100 border-gray-200'>
                     <div className={`flex cursor-pointer items-center w-full gap-2 justify-between`}>
-                        <li className='flex items-center gap-2 w-full'>
+                        <li onClick={() => navigateBack("/")} className='flex items-center gap-2'>
                             <span><IoArrowBack /></span>
                             Back
                         </li>
