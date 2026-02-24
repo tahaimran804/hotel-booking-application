@@ -56,29 +56,40 @@ const BlogDetails = () => {
 
     return (
         <>
-            <div className='w-full h-full lg:h-[400px] bg-gray-50 flex flex-col-reverse lg:grid lg:grid-cols-2 items-center'>
-                <Container>
-                    <div className='px-0 sm:px-4 py-4 lg:px-10 flex flex-col items-start gap-2'>
-                        <h1 className='text-lg sm:text-2xl md:text-4xl font-bold text-black' style={{
+            <div
+                className='w-full h-[300px] sm:h-[400px] bg-[#192024] relative'>
+                <div
+                    style={{
+                        backgroundImage: `url(${BlogBanner})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                    }}
+                    className="absolute top-0 left-0 w-full h-full"
+                />
+                <div className="absolute top-0 z-50 left-0 w-full h-full bg-[black]/50" />
+                <Container className='w-full flex  flex-col items-start justify-center h-full gap-2'>
+                    <div className='px-0 z-50 static left-0 sm:px-4 py-4 lg:px-10 flex flex-col items-start gap-2'>
+                        <h1 className='text-lg sm:text-2xl md:text-4xl font-bold text-white' style={{
                             fontFamily: "'Roboto', sans-serif"
                         }}>What is a resort fee and how to avoid it on your next trip</h1>
-                        <p className='text-xs md:text-sm font-normal text-black'>11 min read</p>
+                        <p className='text-xs md:text-sm font-normal text-white'>11 min read</p>
                         <div className='flex items-center gap-2'>
                             <div className='flex items-center gap-1'>
                                 <span className='w-8 h-8 rounded-full'><img className='w-full h-full rounded-full' src={AuthorImage} alt="Author Image" /></span>
                                 <span className='w-8 h-8 rounded-full'><img className='w-full h-full rounded-full' src={AuthorImage1} alt="Author Image" /></span>
                             </div>
                             <div className='flex flex-col items-start'>
-                                <h1 className='text-sm font-semibold text-black' style={{
+                                <h1 className='text-sm font-semibold text-white' style={{
                                     fontFamily: "'Roboto', sans-serif"
                                 }}>Jenna Scatena, Blane Bachelor</h1>
-                                <p className='text-xs md:text-sm font-normal text-black'>May 26, 2025</p>
+                                <p className='text-xs md:text-sm font-normal text-white'>May 26, 2025</p>
                             </div>
                         </div>
                     </div>
                 </Container>
-                <div className='w-full h-[300px] sm:h-[400px]'><img src={BlogBanner} className='w-full h-full' alt="blog banner" /></div>
             </div>
+
 
             <Container className='flex flex-col items-start gap-4 my-10 w-full md:w-2/3'>
                 <div className='flex flex-col items-start gap-4 border-b border-gray-200 pb-5 w-full'>
@@ -380,7 +391,7 @@ const BlogDetails = () => {
                     <div className='flex flex-col w-full items-stat gap-1'>
                         <label className='text-sm font-normal'>Email address</label>
                         <div className='flex items-center w-full gap-2 h-10'>
-                            <input type="email" required className='border border-gray-200 rounded-md h-full w-full py-2 px-4' />
+                            <input type="email" required className='border outline-0 border-gray-200 rounded-md h-full w-full py-2 px-4' />
                             <button className='bg-[var(--primary-color)] whitespace-nowrap text-white py-2 px-5 rounded-md h-full  text-sm'>Sign Up</button>
                         </div>
 

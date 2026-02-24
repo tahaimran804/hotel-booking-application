@@ -21,12 +21,16 @@ const About = () => {
                 className="w-full h-[300px] px-4 lg:px-16 flex items-center bg-cover bg-center relative"
             >
                 <div className="absolute inset-0 bg-black/40"></div>
-                <h1
-                    className="text-2xl md:text-4xl font-bold text-white relative z-10"
-                    style={{ fontFamily: "'Roboto', sans-serif" }}
-                >
-                    Confident Booking starts at KAYAK.
-                </h1>
+
+                <Container className='flex items-start w-full '>
+                    <h1
+                        className="text-2xl md:text-4xl font-bold text-white relative z-10"
+                        style={{ fontFamily: "'Roboto', sans-serif" }}
+                    >
+                        Confident Booking starts at KAYAK.
+                    </h1>
+                </Container>
+
             </div>
 
             <div className='bg-gray-100 h-full w-full'>

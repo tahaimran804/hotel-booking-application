@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import city1 from "../assets/london.webp";
 import city2 from "../assets/newYork.jpg";
@@ -83,7 +83,6 @@ const TravelDeals = () => {
                                 </button>
                             </div>
                         </div>
-
                         <div className="relative group max-[450px]:col-span-10 col-span-6 overflow-hidden rounded-sm cursor-pointer">
                             <img
                                 src={travelDealsData[1].image}
@@ -107,8 +106,8 @@ const TravelDeals = () => {
                                 </button>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                     <div className="grid max-[480px]:grid-cols-2 grid-cols-3 gap-2 w-full">
                         {travelDealsData.slice(2).map((city) => (
                             <div
@@ -137,7 +136,7 @@ const TravelDeals = () => {
                 </div>
 
             </Container>
-        </section>
+        </section >
     );
 };
 

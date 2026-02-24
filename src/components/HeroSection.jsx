@@ -16,7 +16,7 @@ import "swiper/css";
 const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
     const bgImages = [BgImage]
     return (
-        <section className="relative w-full h-[600px] md:h-[500px]">
+        <section className="relative w-full h-[580px] md:h-[500px]">
 
             <Swiper
                 modules={[Autoplay]}
@@ -42,11 +42,11 @@ const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, s
             {/* Dark Overlay */}
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
 
-            <div className="absolute inset-0 z-20 flex items-center">
+            <div className="absolute inset-0 z-20 w-full h-full flex items-center">
                 <Container className="relative z-20 h-full">
                     <div className="w-full h-full flex items-center justify-center">
                         <div className="grid grid-cols-10 gap-4 w-full h-full">
-                            <div className="col-span-10 w-full h-full flex flex-col gap-0 items-center justify-center py-10 rounded-xl">
+                            <div className="col-span-10 w-full h-full flex flex-col gap-0 items-center justify-start sm:justify-center py-10 rounded-xl">
                                 <div className="flex flex-col text-start items-start gap-1 text-white">
                                     <h1
                                         className="text-lg sm:text-2xl md:text-4xl font-bold"

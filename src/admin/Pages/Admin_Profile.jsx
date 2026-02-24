@@ -108,7 +108,7 @@ const Admin_Profile = () => {
 
 
                     <button
-                        type="submit"
+                        onClick={() => alert("Update Your Profile")}
                         className="w-full bg-[var(--primary-color)] cursor-pointer text-white py-2 rounded-lg hover:bg-[var(--primary-color)]/95 transition duration-300 font-semibold"
                     >
                         Update Profile

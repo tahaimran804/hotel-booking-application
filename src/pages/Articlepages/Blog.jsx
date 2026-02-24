@@ -9,8 +9,6 @@ import ArticleImage4 from "../../assets/ArticleImage3.webp"
 import AuthorImage from "../../assets/PeopleImage.jpeg"
 import AuthorImage1 from "../../assets/AuthorImage.jpeg"
 import AuthorImage2 from "../../assets/AuthorImage1.jpeg"
-
-
 const Blog = () => {
     const blogData = [
         {
@@ -80,26 +78,35 @@ const Blog = () => {
             authorImage: AuthorImage2,
         }
     ];
-
     return (
         <>
-            <div className='w-full h-full lg:h-[400px] bg-[#192024] flex flex-col-reverse lg:grid lg:grid-cols-2 items-center'>
-                <Container>
-                    <div className='px-4 py-4 lg:px-10 flex flex-col items-start gap-2'>
+            <div
+                className='w-full h-[300px] bg-[#192024] relative'>
+                <div
+                    style={{
+                        backgroundImage: `url(${BlogBanner})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                    }}
+                    className="absolute top-0 left-0 w-full h-full"
+                />
+                <div className="absolute top-0 z-50 left-0 w-full h-full bg-[black]/50" />
+                <Container className='w-full flex  flex-col items-start justify-center h-full gap-2'>
+                    <div className='w-full md:w-2/3 z-50'>
                         <h1 className='text-lg sm:text-2xl md:text-4xl font-bold text-white' style={{
                             fontFamily: "'Roboto', sans-serif"
                         }}>All about hotels</h1>
                         <p className='text-xs md:text-sm font-normal text-white'>Choosing the right place to stay can make or break your trip. From understanding hotel types to scoring the best deals, knowing what to look for can mean the difference between a restful night and a travel nightmare. Here’s what you need to know before you book.</p>
                     </div>
                 </Container>
-                <div className='w-full h-[300px] sm:h-[400px]'><img src={BlogBanner} className='w-full h-full' alt="blog banner" /></div>
             </div>
             <Container>
                 <div className='grid py-10 max-[500px]:grid-cols-1 grid-cols-2 lg:grid-cols-3 w-full gap-4 items-start'>
                     {blogData.map((ElemItem) => {
                         return (
                             <div key={ElemItem.id} className='flex bg-white shadow-lg border border-gray-200 flex-col w-full items-start group cursor-pointer rounded-lg gap-2 h-[420px]'>
-                                <div className='h-60 w-full'>
+                                <div className='h-48 md:h-60 w-full'>
                                     <img className='w-full h-full rounded-t-lg' src={ElemItem.image} alt="Article 1" />
                                 </div>
                                 <div className='flex px-2 flex-col items-start gap-1 w-full'>

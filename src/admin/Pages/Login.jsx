@@ -1,11 +1,13 @@
 import React from 'react'
 import Container from '../../components/Container'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+    const navigate = useNavigate()
     return (
         <Container>
             <div className='flex items-center justify-center w-full h-screen'>
-                <div className='w-full sm:w-2/3 xl:w-2/6 h-auto py-4 px-4 bg-white shadow-lg border border-gray-100 rounded-md'>
+                <div className='w-full sm:w-2/3 xl:w-2/6 h-auto py-4 px-4 bg-white shadow-lg border border-gray-200 rounded-md'>
                     <h1 style={{
                         fontFamily: "'Roboto', sans-serif"
                     }} className='text-2xl font-bold text-black'>Admin Login</h1>
@@ -23,7 +25,7 @@ const Login = () => {
                             }} className='text-sm font-normal'>Admin Password</label>
                             <input type="password" required className=' outline-0 w-full py-2 px-2 rounded-md border border-gray-100' />
                         </div>
-                        <button className='py-2 px-4 rounded-md cursor-pointer bg-[var(--primary-color)] text-white  w-full'>Admin Login</button>
+                        <button onClick={() => navigate("/admin-dashboard")} className='py-2 px-4 rounded-md cursor-pointer bg-[var(--primary-color)] text-white  w-full'>Admin Login</button>
                     </form>
                 </div>
             </div>
