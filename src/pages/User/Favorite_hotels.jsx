@@ -87,7 +87,7 @@ const Favorite_hotels = () => {
                             <div className='flex overflow-auto cursor-pointer no_scrollBar items-start flex-col gap-2 h-64 sm:h-72 hover:shadow-lg rounded-lg w-full bg-white border border-gray-100 shadow-sm'>
                                 <div className='relative w-full h-32 sm:h-40'>
                                     <img src={ElemItem.image} className='w-full rounded-t-lg h-full line-clamp-1' alt={ElemItem.name} />
-                                    <span className='absolute top-2 right-2 w-8 text-md h-8 rounded-full p-1 bg-gray-100 cursor-pointer text-orange-600 flex items-center justify-center'><FaHeart /></span>
+                                    <span className='absolute top-2 right-2 w-8 text-md h-8 rounded-full p-1 bg-gray-100 cursor-pointer text-[var(--primary-color)] flex items-center justify-center'><FaHeart /></span>
                                 </div>
                                 <div className='flex flex-col gap-2 items-start py-2 w-full'>
                                     <div className='flex flex-col items-start px-4  w-full'>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
-const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
+const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
     const [country, setCountry] = useState(null);
     const [city, setCity] = useState("");
     const [hotel, setHotel] = useState("");
@@ -15,6 +15,10 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
     // const hotels = country && city
     //     ? dataStructure[country][city]
     //     : [];
+
+
+    console.log("Hotel Data", hotels)
+
     const handleSearch = () => {
         if (!country) {
             setError("Please select Country, City and Hotel");
@@ -22,14 +26,14 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
         }
         setError("");
         const searchData = {
-            city_name: city?.city_name || "",
-            city_code: city?.city_code || "",
+            city_name: selectedCity?.city_name || "",
+            city_code: selectedCity?.city_code || "",
             country_name: selectedCountry?.country_name || "",
             country_code: selectedCountry?.country_code || "",
             hotel_name: selectedHotel?.hotel_name || "",
 
-            lat: city?.lat || selectedCountry?.lat || null,
-            lng: city?.lng || selectedCountry?.lng || null,
+            lat: selectedCity?.lat || selectedCountry?.lat || null,
+            lng: selectedCity?.lng || selectedCountry?.lng || null,
         };
         navigate(`/hotels?data=${encodeURIComponent(JSON.stringify(searchData))}`);
         console.log("Search Data:", searchData);
@@ -42,31 +46,52 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
                     <p className="text-xs text-gray-500">Select Hotels</p>
                     <input value={hotelSearch} onChange={(e) => setHotelSearch(e.target.value)} type="text" placeholder="Search Your Hotels" className="border mt-1 border-gray-200 rounded-sm w-full outline-0 px-2 py-2 text-s" />
                     {hotelSearch?.length > 2 && (
-                        <div className="absolute z-50 w-full bg-white border border-gray-200 shadow-md rounded-sm mt-1 max-h-60 overflow-y-auto">
+                        <div className="absolute z-[9999] w-full bg-white border border-gray-200 shadow-md rounded-sm mt-1 max-h-60 overflow-y-auto">
                             {loading ? (
                                 <div className="p-2">
                                     <Skeleton height={40} count={3} />
                                 </div>
                             ) : hotels?.length > 0 ? (
-                                <select
-                                    className="w-full outline-0 border-0 bg-white rounded-sm py-2 px-2"
-                                    value={selectedHotel?.id || ""}
-                                    onChange={(e) => {
-                                        const hotelObj = hotels.find(
-                                            (h) => String(h.id) === e.target.value
-                                        );
-                                        setSelectedHotel(hotelObj || null);
-                                    }}
-                                >
-                                    <option value="">Select Hotels</option>
+                                <div>
                                     {hotels.map((hotel) => (
-                                        <option key={hotel.id} value={hotel.id}>
-                                            {hotel.hotel_name}
-                                        </option>
+                                        <div
+                                            key={hotel.id}
+                                            onClick={() => {
+                                                setSelectedHotel(hotel);
+                                                setHotelSearch(hotel.hotelName);
+
+                                                const matchedCountry = countries.find(
+                                                    (c) =>
+                                                        c.country_name === hotel.countyName
+                                                );
+                                                if (matchedCountry) {
+                                                    setSelectedCountry(matchedCountry);
+                                                    setCountry(matchedCountry.country_name);
+                                                }
+
+                                                const matchedCity = cities.find(
+                                                    (c) =>
+                                                        c.city_name === hotel.cityName
+                                                );
+                                                if (matchedCity) {
+                                                    setSelectedCity({
+                                                        city_name: hotel.cityName,
+                                                        city_code: hotel.cityCode,
+                                                    });
+
+                                                    setCity(hotel.cityName);
+                                                }
+                                            }}
+                                            className="px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                        >
+                                            {hotel.hotelName}
+                                        </div>
                                     ))}
-                                </select>
+                                </div>
                             ) : (
-                                <div className="p-2 text-sm text-gray-500">No hotels found</div>
+                                <div className="p-2 text-sm text-gray-500">
+                                    No hotels found
+                                </div>
                             )}
                         </div>
                     )}
@@ -115,13 +140,13 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
                         </div>
                     ) : (
                         <select
-                            value={city?.city_name || ""}
+                            value={city || ""}
                             disabled={!country}
                             onChange={(e) => {
                                 const selectedCityObj = cities.find(
                                     (c) => c.city_name === e.target.value
                                 );
-                                setCity(selectedCityObj || null);
+                                setCity(e.target.value);
                                 setSelectedCity(selectedCityObj || null);
                                 setError("");
                             }}

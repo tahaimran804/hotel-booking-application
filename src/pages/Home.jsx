@@ -68,26 +68,29 @@ const Home = () => {
 
 
     useEffect(() => {
-        if (hotelSearch.length < 3) return;
+        if (hotelSearch?.length < 3) return;
         const fetchHotels = async () => {
             try {
                 setLoading(true)
-                const json = JSON.stringify({ search: hotelSearch });
+                const json = JSON.stringify({ hotel_name: hotelSearch });
                 const response = await axios.post(
-                    'http://172.16.253.49:5001/hotels?action=search_hotels',
+                    'http://172.16.253.49:5001/hotels?action=get_hotels_suggestions',
                     JSON.stringify({ params: json }),
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                     }
-
                 )
                 if (response.data.success === true) {
                     setHotels(response.data.data)
+                    console.log("Check The Search Data", response.data.data)
+                } else {
+                    setHotels([])
                 }
             } catch (error) {
                 console.error('Error fetching hotels:', error);
+                setHotels([])
             } finally {
                 setLoading(false);
             }
@@ -96,19 +99,39 @@ const Home = () => {
     }, [hotelSearch]);
 
     useEffect(() => {
-        if (selectedCity) {
-            selectedCountry({
-                country_name: selectedHotel.country_name,
-                country_code: selectedHotel.country_code
-            });
+        if (selectedHotel) {
+            const matchedCountry = countries.find(
+                (c) => c.country_name === selectedHotel.countyName
+            );
 
-            selectedCity({
-                city_name: selectedHotel.city_name,
-            })
+            if (matchedCountry) {
+                setSelectedCountry({
+                    country_name: matchedCountry.country_name,
+                    country_code: matchedCountry.country_code,
+                });
+            } else {
+                setSelectedCountry({
+                    country_name: selectedHotel.countyName,
+                    country_code: selectedHotel.countyCode,
+                });
+            }
+
+            const matchedCity = cities.find(
+                (c) => c.city_name === selectedHotel.cityName
+            );
+            if (matchedCity) {
+                setSelectedCity({
+                    city_name: matchedCity.city_name,
+                    city_code: matchedCity.city_code,
+                });
+            } else {
+                setSelectedCity({
+                    city_name: selectedHotel.cityName,
+                    city_code: selectedHotel.cityCode,
+                });
+            }
         }
-    }, [selectedHotel])
-
-
+    }, [selectedHotel]);
 
     return (
         <>

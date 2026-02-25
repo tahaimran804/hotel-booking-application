@@ -13,7 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
+const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, selectedCity, selectedCountry, hotels, selectedHotel, setSelectedHotel, hotelSearch, setHotelSearch, loading }) => {
     const bgImages = [BgImage]
     return (
         <section className="relative w-full h-[580px] md:h-[500px]">
@@ -79,15 +79,17 @@ const HeroSection = ({ countries, setSelectedCountry, cities, setSelectedCity, s
                                     <CheckIn
                                         countries={countries}
                                         setSelectedCountry={setSelectedCountry}
-                                        cities={cities}
-                                        setSelectedCity={setSelectedCity}
                                         selectedCountry={selectedCountry}
+                                        cities={cities}
+                                        selectedCity={selectedCity}
+                                        setSelectedCity={setSelectedCity}
+                                        loading={loading}
+
                                         hotels={hotels}
                                         selectedHotel={selectedHotel}
                                         setSelectedHotel={setSelectedHotel}
                                         hotelSearch={hotelSearch}
                                         setHotelSearch={setHotelSearch}
-                                        loading={loading}
                                     />
                                     {/* <div className="flex items-start flex-wrap gap-4">
                                     <p className="text-sm font-normal text-white">Compare vs. KAYAK</p>

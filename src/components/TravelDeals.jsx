@@ -122,7 +122,7 @@ const TravelDeals = () => {
 
                                 <div className="absolute inset-0 bg-black/60"></div>
 
-                                <div className="absolute bottom-4 px-4 w-full text-[var(--accent-color)]">
+                                <div className="absolute bottom-4 max-[400px]:px-2 px-4 w-full text-[var(--accent-color)]">
                                     <h3 className="font-semibold text-lg">{city.name}</h3>
                                     <p className="text-xs opacity-90">{city.dates}</p>
                                     <p className="text-sm font-medium">{city.avgPrice}</p>
