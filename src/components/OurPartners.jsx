@@ -8,10 +8,26 @@ import Our_Partne5 from "../assets/Hotwire_Logotransprent.png";
 import Our_Partne6 from "../assets/trivago-logo-png-transparent.png";
 import Our_Partne7 from "../assets/Priceline_Logo_transprent.png";
 import Our_Partne8 from "../assets/travelocity_logo_transprent.png";
+import { useEffect, useState } from "react";
 
 
 
 function MultipleItems() {
+    const [width, setWidth] = useState()
+    useEffect(() => {
+        const Resize = () => {
+            setWidth(window.innerWidth)
+        }
+        window.addEventListener("resize", Resize);
+        setTimeout(() => {
+            setWidth(window.innerWidth)
+        }, 100);
+        return () => window.removeEventListener("resize", Resize)
+    }, [])
+
+
+
+
     const PartnerLogosData = [
         { id: 1, logo: Our_Partne1 },
         { id: 2, logo: Our_Partne2 },
@@ -61,7 +77,7 @@ function MultipleItems() {
     return (
         <section className="py-8 bg-gray-100">
             <Container>
-                <Slider {...settings}>
+                <Slider key={width} {...settings}>
                     {PartnerLogosData.map((partner) => (
                         <div key={partner.id} className="px-5 sm:px-10">
                             <div className="h-14 w-full flex items-center justify-center transition duration-300">
