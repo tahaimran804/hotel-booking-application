@@ -59,8 +59,8 @@ Important: Always double-check details before booking.`
                 <p className='text-sm font-normal text-gray-500'>Help Center – Booking and checkout</p>
             </div>
 
-            <div className='w-full h-[250px] flex items-center justify-center'>
-                <h1 style={{ fontFamily: "'Roboto', sans-serif" }} className='text-6xl font-extrabold'>
+            <div className='w-full h-[200px] sm:h-[250px] flex items-center justify-center'>
+                <h1 style={{ fontFamily: "'Roboto', sans-serif" }} className='text-3xl md:text-6xl font-extrabold'>
                     Booking and checkout.
                 </h1>
             </div>

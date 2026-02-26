@@ -103,7 +103,6 @@ const Home = () => {
             const matchedCountry = countries.find(
                 (c) => c.country_name === selectedHotel.countyName
             );
-
             if (matchedCountry) {
                 setSelectedCountry({
                     country_name: matchedCountry.country_name,

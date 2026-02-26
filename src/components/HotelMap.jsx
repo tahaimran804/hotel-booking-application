@@ -25,7 +25,7 @@ const HotelsMap = ({ hotels = [], selectedLocation }) => {
     return (
         <MapContainer
             center={defaultCenter}
-            zoom={12}
+            zoom={1}
             scrollWheelZoom={true}
             className="w-full h-full"
         >

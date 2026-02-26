@@ -26,7 +26,7 @@ const Hotels = () => {
     }, [dataParam]);
 
     useEffect(() => {
-        if (!searchData) navigate("/");
+        // if (!searchData) navigate("/hotels");
         if (searchData?.lat && searchData?.lng) setSelectedLocation([searchData.lat, searchData.lng]);
     }, [searchData, navigate]);
 
@@ -65,13 +65,13 @@ const Hotels = () => {
 
     useEffect(() => {
         if (!searchData) return;
-        fetchHotels(currentPage); // initial load
+        fetchHotels(currentPage);
     }, [location.search, searchData, currentPage]);
 
     const handlePageChange = (pageNumber) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         setCurrentPage(pageNumber);
-        fetchHotels(pageNumber); // now this works!
+        fetchHotels(pageNumber);
     };
 
     return (

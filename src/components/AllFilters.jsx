@@ -83,7 +83,7 @@ const AllFilters = ({ hotelData }) => {
                 />
             )}
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center flex-wrap sm:flex-nowrap gap-1 sm:gap-3">
                 <div
                     onClick={() => setOpenFilterSection(true)}
                     className="flex cursor-pointer border border-gray-200 py-3 px-4 rounded-md bg-[var(--primary-color)] text-white text-sm font-semibold items-center gap-2"
@@ -101,7 +101,6 @@ const AllFilters = ({ hotelData }) => {
                     {filtersData.map((section, index) => (
                         <div key={index} className="border-b border-gray-200 py-3">
 
-                            {/* Section Title */}
                             <h2 className="flex items-center gap-2 text-lg font-semibold">
                                 {section.icon && <LuSofa />}
                                 {section.title}
@@ -132,7 +131,7 @@ const AllFilters = ({ hotelData }) => {
 
                 {/* Footer Buttons */}
                 <div className="absolute bottom-0 left-0 w-full border-t border-gray-100 bg-white p-4 flex gap-3">
-                    <button className="text-black font-semibold">Clear</button>
+                    <button onClick={() => setOpenFilterSection(false)} className="text-black font-semibold">Clear</button>
                     <button className="bg-[var(--primary-color)] py-2 px-5 rounded-md w-full text-white">
                         Show {hotelsData.length} results
                     </button>

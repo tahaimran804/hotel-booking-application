@@ -16,9 +16,6 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
     //     ? dataStructure[country][city]
     //     : [];
 
-
-    console.log("Hotel Data", hotels)
-
     const handleSearch = () => {
         if (!country) {
             setError("Please select Country, City and Hotel");
@@ -31,13 +28,18 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
             country_name: selectedCountry?.country_name || "",
             country_code: selectedCountry?.country_code || "",
             hotel_name: selectedHotel?.hotel_name || "",
-
             lat: selectedCity?.lat || selectedCountry?.lat || null,
             lng: selectedCity?.lng || selectedCountry?.lng || null,
         };
-        navigate(`/hotels?data=${encodeURIComponent(JSON.stringify(searchData))}`);
+        navigate(
+            `/hotels/${city_name}/${hotel_name}?data=${encodeURIComponent(
+                JSON.stringify(searchData)
+            )}`
+        );
+        // navigate(`/hotels?data=${encodeURIComponent(JSON.stringify(searchData))}`);
         console.log("Search Data:", searchData);
     };
+    console.log("city the Data", selectedCity)
 
     return (
         <div className="py-4 px-4 w-full bg-white shadow-sm rounded-sm">

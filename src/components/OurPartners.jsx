@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import Container from "./Container";
 import Our_Partne1 from "../assets/Booking.com_transprent.png";
 import Our_Partne2 from "../assets/Hotels.com_transprent2.png";
@@ -8,25 +7,13 @@ import Our_Partne5 from "../assets/Hotwire_Logotransprent.png";
 import Our_Partne6 from "../assets/trivago-logo-png-transparent.png";
 import Our_Partne7 from "../assets/Priceline_Logo_transprent.png";
 import Our_Partne8 from "../assets/travelocity_logo_transprent.png";
-import { useEffect, useState } from "react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
+import "swiper/css";
 
 function MultipleItems() {
-    const [width, setWidth] = useState()
-    useEffect(() => {
-        const Resize = () => {
-            setWidth(window.innerWidth)
-        }
-        window.addEventListener("resize", Resize);
-        setTimeout(() => {
-            setWidth(window.innerWidth)
-        }, 100);
-        return () => window.removeEventListener("resize", Resize)
-    }, [])
-
-
-
 
     const PartnerLogosData = [
         { id: 1, logo: Our_Partne1 },
@@ -39,58 +26,48 @@ function MultipleItems() {
         { id: 8, logo: Our_Partne8 },
     ];
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 2500,
-        slidesToShow: 7,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        arrows: false,
-        pauseOnHover: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
-
     return (
         <section className="py-8 bg-gray-100">
-            <Container>
-                <Slider key={width} {...settings}>
-                    {PartnerLogosData.map((partner) => (
-                        <div key={partner.id} className="px-5 sm:px-10">
-                            <div className="h-14 w-full flex items-center justify-center transition duration-300">
+            <Swiper
+                modules={[Autoplay]}
+                loop={true}
+                speed={2500}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                }}
+                spaceBetween={20}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 2,
+                    },
+                    480: {
+                        slidesPerView: 3,
+                    },
+                    780: {
+                        slidesPerView: 5,
+                    },
+                    1024: {
+                        slidesPerView: 7,
+                    },
+                }}
+                className="w-full"
+            >
+                {PartnerLogosData.map((partner) => (
+                    <SwiperSlide key={partner.id}>
+                        <div className="px-5 sm:px-10">
+                            <div className="h-14 flex items-center justify-center transition duration-300">
                                 <img
                                     src={partner.logo}
                                     alt={`Partner ${partner.id}`}
-                                    className="h-full object-contain transition duration-300"
+                                    className="h-full object-contain"
                                 />
                             </div>
                         </div>
-                    ))}
-                </Slider>
-            </Container>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </section>
     );
 }

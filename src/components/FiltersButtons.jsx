@@ -139,7 +139,7 @@ const FiltersButtons = () => {
 
     return (
         <div className='flex flex-col items-start w-full gap-2'>
-            <div className='grid relative w-full bg-white rounded-md border border-gray-100 items-center gap-4 grid-cols-5'>
+            <div className='flex sm:grid relative w-full bg-white overflow-x-auto rounded-md border border-gray-100 items-center gap-2 sm:gap-4 sm:grid-cols-5'>
                 {FiltersButtonData.map((items) => {
 
                     const isActive = activeFilter === items.name
@@ -167,7 +167,9 @@ const FiltersButtons = () => {
     py-3 w-full text-sm font-medium
     flex items-center justify-center gap-1
     transition-all duration-200
-     cursor-pointer
+    // whitespace-nowrap
+    cursor-pointer
+    px-4
     ${isActive
                                     ? "bg-[var(--primary-color)] rounded-sm text-white shadow-sm"
                                     : "text-gray-600 hover:bg-white/60 hover:text-black"
@@ -214,9 +216,9 @@ const FiltersButtons = () => {
                 )}
 
                 {newerestLocation && (
-                    <div className="absolute right-4 top-14 w-96 max-h-96 overflow-y-auto
-        bg-white border border-gray-200 rounded-xl shadow-xl
-        py-4 z-50 animate-fadeIn">
+                    <div className="absolute bg-white right-4 top-10 w-96 h-96 overflow-y-auto
+        border border-gray-200 rounded-xl shadow-xl
+        py-4 all_Filter z-50 animate-fadeIn">
 
                         <div className='flex flex-col items-start gap-2'>
                             <h4 className="font-semibold bg-gray-100 py-2 px-4 w-full text-sm">
@@ -270,12 +272,12 @@ const FiltersButtons = () => {
 
 
 
-            <div className='w-full bg-white flex items-center gap-2 rounded-md border py-3 border-gray-100 px-5'>
+            {/* <div className='w-full bg-white flex items-center gap-2 rounded-md border py-3 border-gray-100 px-5'>
                 <p className='text-sm text-black'>We find prices from all across the web – what providers pay us affects how we sort results.</p>
                 <Link to={"/about-us"}>
                     <span className='text-[var(--primary-color)] text-sm capitalize'>Learn how RateCompares works</span>
                 </Link>
-            </div>
+            </div> */}
 
 
 
