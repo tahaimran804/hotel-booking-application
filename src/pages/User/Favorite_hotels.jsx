@@ -81,7 +81,7 @@ const Favorite_hotels = () => {
             }}>Saved</h1>
 
             <div className='flex pt-5 flex-col items-start gap-4'>
-                <div className='grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-2 w-full'>
+                <div className='grid max-[430px]:grid-cols-1 grid-cols-2 lg:grid-cols-3 items-start gap-2 w-full'>
                     {favoriteHotelsData.map((ElemItem) => {
                         return (
                             <div className='flex overflow-auto cursor-pointer no_scrollBar items-start flex-col gap-2 h-64 sm:h-72 hover:shadow-lg rounded-lg w-full bg-white border border-gray-100 shadow-sm'>
@@ -90,7 +90,7 @@ const Favorite_hotels = () => {
                                     <span className='absolute top-2 right-2 w-8 text-md h-8 rounded-full p-1 bg-gray-100 cursor-pointer text-[var(--primary-color)] flex items-center justify-center'><FaHeart /></span>
                                 </div>
                                 <div className='flex flex-col gap-2 items-start py-2 w-full'>
-                                    <div className='flex flex-col items-start px-4  w-full'>
+                                    <div className='flex flex-col items-start px-2 sm:px-4  w-full'>
                                         <h1
                                             style={{
                                                 fontFamily: "'Roboto', sans-serif"
@@ -102,7 +102,7 @@ const Favorite_hotels = () => {
                                             {ElemItem.location}</p>
                                     </div>
 
-                                    <div className='flex flex-col border-t py-2 border-gray-100 px-4 items-start w-full'>
+                                    <div className='flex flex-col border-t py-2 border-gray-100 px-2 sm:px-4 items-start w-full'>
                                         <h1
                                             style={{
                                                 fontFamily: "'Roboto', sans-serif"

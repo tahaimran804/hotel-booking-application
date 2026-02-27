@@ -30,32 +30,65 @@ const HotelsList = ({ hotels, loading, error, currentPage, totalPages, onPageCha
     }
     if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
     if (!loading && (!hotels || hotels.length === 0)) return <p className="text-center py-10 text-gray-500 font-semibold">No Hotels Found</p>;
+
+    console.log(hotels)
+
     return (
-        <div className="flex flex-col pb-10 gap-2">
+        <div className="flex flex-col  pb-10 gap-2">
             {hotels.map(hotel => (
-                <div key={hotel.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition grid grid-cols-12">
+                <div key={hotel.id} className="border border-gray-200 h-[240px] rounded-xl overflow-auto no_scrollBar shadow-sm hover:shadow-md transition grid grid-cols-12">
                     <div className="col-span-12 sm:col-span-3">
                         <Slider {...sliderSettings}>
                             {(hotel.images && hotel.images.length > 0 ? hotel.images : [hotelPlaceholder]).map((img, idx) => (
-                                <img key={idx} src={img} alt="hotel" className="w-full cursor-grab h-[220px] object-cover" />
+                                <img key={idx} src={img} alt="hotel" className="w-full cursor-grab h-[240px] object-cover" />
                             ))}
                         </Slider>
                     </div>
 
-                    <div className="col-span-6 sm:col-span-6 p-4 flex flex-col gap-2 cursor-pointer">
+                    <div className="col-span-6 sm:col-span-6 py-2 px-4 flex flex-col gap-2 cursor-pointer">
                         <div className="flex justify-between items-start">
-                            <h2 className="text-xl font-semibold hover:underline">{hotel.HotelName}</h2>
+                            <h2 className="text-xl font-semibold line-clamp-1 hover:underline">{hotel.HotelName}</h2>
                             <FaHeart className="text-gray-400 hover:text-red-500 cursor-pointer" />
                         </div>
-                        <p className="text-sm text-gray-600">{hotel.distance}</p>
+                        <p className="text-sm text-gray-600">{hotel.Address}</p>
                         <div className="flex items-center gap-2">
                             <RatingStar item={hotel.HotelRating} />
                             {/* <span className="font-semibold">{hotel.HotelRating}</span> */}
-                            <span className="text-sm text-gray-500">{hotel.reviews} reviews</span>
+                            <span className="text-sm text-gray-500">{hotel.reviews || "4.6"} reviews</span>
                         </div>
-                        <span className="bg-blue-100 text-[var(--primary-color)] text-xs px-2 py-1 rounded w-fit">{hotel.tag}</span>
-                    </div>
+                        {/* <span className="bg-blue-100 text-[var(--primary-color)] text-xs px-2 py-1 rounded w-fit">{hotel.tag}</span> */}
+                        <div className="text-sm line-clamp-2 w-full text-gray-500">
+                            {hotel.Description
+                                ? hotel.Description.replace(/<[^>]+>/g, "")
+                                : "Description"}
+                        </div>
 
+                        <div className="flex flex-col itens-start gap-2 w-full">
+                            <div className="flex w-full items-start gap-2 flex-wrap text-sm text-gray-600">
+
+                                <p>
+                                    <span className="font-semibold">Country:</span>{" "}
+                                    {hotel.countyName || "N/A"}
+                                </p>
+
+                                <p>
+                                    <span className="font-semibold">City:</span>{" "}
+                                    {hotel.cityName || "N/A"}
+                                </p>
+
+                            </div>
+                            {hotel.HotelWebsiteUrl ? (
+                                <a href={hotel.HotelWebsiteUrl}>
+                                    <button className="bg-[var(--primary-color)] text-white py-2 px-4 rounded-lg hover:bg-[var(--primary-color)]/90 transition cursor-pointer"> Visit Official Website →</button>
+                                </a>
+                            ) : (
+                                null
+                            )}
+                        </div>
+
+
+
+                    </div>
                     <div className="col-span-6 sm:col-span-3 p-4 border-l border-gray-100 flex flex-col justify-between">
                         <div>
                             <p className="text-sm text-red-500">Our cheapest price</p>
@@ -67,30 +100,33 @@ const HotelsList = ({ hotels, loading, error, currentPage, totalPages, onPageCha
                         <button className="bg-[var(--primary-color)] text-white py-2 rounded-lg hover:bg-[var(--primary-color)]/90 transition cursor-pointer">Go to site</button>
                     </div>
                 </div>
-            ))}
+            ))
+            }
 
-            {!loading && totalPages > 1 && (
-                <div className="flex justify-center gap-2 mt-8 flex-wrap">
-                    <button disabled={currentPage === 1} onClick={() => onPageChange(currentPage - 1)} className="px-3 py-2 cursor-pointer bg-gray-100 rounded-md disabled:opacity-50">Prev</button>
+            {
+                !loading && totalPages > 1 && (
+                    <div className="flex justify-center gap-2 mt-8 flex-wrap">
+                        <button disabled={currentPage === 1} onClick={() => onPageChange(currentPage - 1)} className="px-3 py-2 cursor-pointer bg-gray-100 rounded-md disabled:opacity-50">Prev</button>
 
-                    {[...Array(totalPages)].map((_, idx) => {
-                        const pageNumber = idx + 1;
-                        return (
-                            <button
-                                key={pageNumber}
-                                onClick={() => onPageChange(pageNumber)}
-                                className={`px-4 py-2 cursor-pointer rounded-md text-sm font-medium ${currentPage === pageNumber ? "bg-[var(--primary-color)] text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                                    }`}
-                            >
-                                {pageNumber}
-                            </button>
-                        );
-                    })}
+                        {[...Array(totalPages)].map((_, idx) => {
+                            const pageNumber = idx + 1;
+                            return (
+                                <button
+                                    key={pageNumber}
+                                    onClick={() => onPageChange(pageNumber)}
+                                    className={`px-4 py-2 cursor-pointer rounded-md text-sm font-medium ${currentPage === pageNumber ? "bg-[var(--primary-color)] text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                                        }`}
+                                >
+                                    {pageNumber}
+                                </button>
+                            );
+                        })}
 
-                    <button disabled={currentPage === totalPages} onClick={() => onPageChange(currentPage + 1)} className="px-3 py-2     bg-gray-100 rounded-md disabled:opacity-50">Next</button>
-                </div>
-            )}
-        </div>
+                        <button disabled={currentPage === totalPages} onClick={() => onPageChange(currentPage + 1)} className="px-3 py-2     bg-gray-100 rounded-md disabled:opacity-50">Next</button>
+                    </div>
+                )
+            }
+        </div >
     );
 };
 

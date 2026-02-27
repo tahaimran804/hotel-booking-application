@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
@@ -7,8 +8,8 @@ const UserProfile = () => {
     const [editName, setEditName] = useState(false);
     const [editPassword, setEditPassword] = useState(false);
 
-    const [firstName, setFirstName] = useState("John");
-    const [lastName, setLastName] = useState("Doe");
+    const [firstName, setFirstName] = useState("Taha");
+    const [lastName, setLastName] = useState("Imran");
 
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -42,9 +43,16 @@ const UserProfile = () => {
                         </h2>
                     </div>
 
-                    <span className="text-xl text-[var(--primary-color)]">
-                        <MdKeyboardArrowRight />
-                    </span>
+                    {editName ? (
+                        <span className="text-xl text-[var(--primary-color)]">
+                            <IoIosArrowUp />
+                        </span>
+                    ) : (
+                        <span className="text-xl text-[var(--primary-color)]">
+                            <MdKeyboardArrowRight />
+                        </span>
+                    )}
+
                 </div>
 
                 {editName && (
@@ -68,7 +76,7 @@ const UserProfile = () => {
 
                         <div className="flex gap-3 mt-2">
                             <button
-                                onClick={() => setEditName(false)}
+                                onClick={() => alert("Save Changes")}
                                 className="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md"
                             >
                                 Save Changes
@@ -115,9 +123,15 @@ const UserProfile = () => {
                         </h2>
                     </div>
 
-                    <span className="text-xl text-[var(--primary-color)]">
-                        <MdKeyboardArrowRight />
-                    </span>
+                    {editPassword ? (
+                        <span className="text-xl text-[var(--primary-color)]">
+                            <IoIosArrowUp />
+                        </span>
+                    ) : (
+                        <span className="text-xl text-[var(--primary-color)]">
+                            <MdKeyboardArrowRight />
+                        </span>
+                    )}
                 </div>
 
                 {/* Password Inputs */}
@@ -142,7 +156,7 @@ const UserProfile = () => {
 
                         <div className="flex gap-3 mt-2">
                             <button
-                                onClick={() => setEditPassword(false)}
+                                onClick={() => alert("Password Change")}
                                 className="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md"
                             >
                                 Change Password

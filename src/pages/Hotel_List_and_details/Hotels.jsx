@@ -44,7 +44,7 @@ const Hotels = () => {
             });
 
             const response = await axios.post(
-                'http://172.16.253.49:5001/hotels?action=get_hotels_searches',
+                'http://10.10.10.10:5001/hotels?action=get_hotels_searches',
                 JSON.stringify({ params: payload }),
                 { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
             );

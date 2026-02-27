@@ -87,7 +87,7 @@ const UserAsideBar = () => {
                             </Link>
                         )
                     })}
-                    <button className='w-full rounded-md items-center justify-center py-3 px-4 text-black mt-4 cursor-pointer bg-gray-100'>Logout</button>
+                    <button className='w-full rounded-md items-center justify-center py-3 px-4 text-white mt-4 cursor-pointer bg-[var(--primary-color)]'>Logout</button>
                 </div>
             </div>
         </div >

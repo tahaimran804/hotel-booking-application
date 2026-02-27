@@ -15,7 +15,6 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
     // const hotels = country && city
     //     ? dataStructure[country][city]
     //     : [];
-
     const handleSearch = () => {
         if (!country) {
             setError("Please select Country, City and Hotel");
@@ -27,19 +26,19 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
             city_code: selectedCity?.city_code || "",
             country_name: selectedCountry?.country_name || "",
             country_code: selectedCountry?.country_code || "",
-            hotel_name: selectedHotel?.hotel_name || "",
+            hotel_name: selectedHotel?.hotelName || "",
             lat: selectedCity?.lat || selectedCountry?.lat || null,
             lng: selectedCity?.lng || selectedCountry?.lng || null,
         };
-        navigate(
-            `/hotels/${city_name}/${hotel_name}?data=${encodeURIComponent(
-                JSON.stringify(searchData)
-            )}`
-        );
-        // navigate(`/hotels?data=${encodeURIComponent(JSON.stringify(searchData))}`);
-        console.log("Search Data:", searchData);
+        // navigate(
+        //     `/hotels/${city_name}/${hotel_name}?data=${encodeURIComponent(
+        //         JSON.stringify(searchData)
+        //     )}`
+        // );
+        navigate(`/hotels?data=${encodeURIComponent(JSON.stringify(searchData))}`);
     };
-    console.log("city the Data", selectedCity)
+
+    console.log("Check the data", country, city, hotel)
 
     return (
         <div className="py-4 px-4 w-full bg-white shadow-sm rounded-sm">
@@ -61,7 +60,7 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
                                             onClick={() => {
                                                 setSelectedHotel(hotel);
                                                 setHotelSearch(hotel.hotelName);
-
+                                                setHotel(hotel.hotelName);
                                                 const matchedCountry = countries.find(
                                                     (c) =>
                                                         c.country_name === hotel.countyName
@@ -84,9 +83,12 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
                                                     setCity(hotel.cityName);
                                                 }
                                             }}
-                                            className="px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                            className="px-3 py-3 border-b border-gray-200 cursor-pointer hover:bg-gray-100"
                                         >
                                             {hotel.hotelName}
+                                            <div className="text-xs text-gray-700 flex items-center gap-2">
+                                                <p>{hotel.countyName}</p>→<p>{hotel.cityName}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -188,7 +190,7 @@ const CheckIn = ({ countries, setSelectedCountry, cities, setSelectedCity, selec
             {
                 (country || city || hotel) && (
                     <div className="mt-4 text-sm text-gray-600">
-                        Selected: {country} {city && `→ ${city?.city_name}`} {hotel && `→ ${hotel}`}
+                        Selected: {country} {city && `→ ${city}`} {hotel && `→ ${hotel}`}
                     </div>
                 )
             }

@@ -24,7 +24,7 @@ const Home = () => {
             try {
                 setLoading(true)
                 const json = JSON.stringify({});
-                const response = await axios.post('http://172.16.253.49:5001/hotels?action=get_countries', JSON.stringify({ params: json }), {
+                const response = await axios.post('http://10.10.10.10:5001/hotels?action=get_countries', JSON.stringify({ params: json }), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
@@ -43,12 +43,11 @@ const Home = () => {
 
     useEffect(() => {
         if (selectedCountry) {
-            console.log(selectedCountry)
             const fetchCities = async () => {
                 try {
                     setLoading(true)
                     const json = JSON.stringify({ country_name: selectedCountry.country_name, country_code: selectedCountry.country_code });
-                    const response = await axios.post('http://172.16.253.49:5001/hotels?action=get_cities_by_country', JSON.stringify({ params: json }), {
+                    const response = await axios.post('http://10.10.10.10:5001/hotels?action=get_cities_by_country', JSON.stringify({ params: json }), {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
@@ -74,7 +73,7 @@ const Home = () => {
                 setLoading(true)
                 const json = JSON.stringify({ hotel_name: hotelSearch });
                 const response = await axios.post(
-                    'http://172.16.253.49:5001/hotels?action=get_hotels_suggestions',
+                    'http://10.10.10.10:5001/hotels?action=get_hotels_suggestions',
                     JSON.stringify({ params: json }),
                     {
                         headers: {
@@ -84,7 +83,6 @@ const Home = () => {
                 )
                 if (response.data.success === true) {
                     setHotels(response.data.data)
-                    console.log("Check The Search Data", response.data.data)
                 } else {
                     setHotels([])
                 }
